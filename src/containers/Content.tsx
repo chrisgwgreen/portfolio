@@ -53,20 +53,18 @@ export const Content = (props: Props) => {
       })
   }, [projectId])
 
+  console.log(content)
+
   return (
     <ContentWrapper>
       <div>
         <ImageStack
-          images={[
-            {
-              src: `${process.env.PUBLIC_URL}/img/1.jpg`,
-              alt: 'image 1'
-            },
-            {
-              src: `${process.env.PUBLIC_URL}/img/2.png`,
+          images={content?.images?.map((image) => {
+            return {
+              src: `${process.env.PUBLIC_URL}/img/${image}`,
               alt: 'image 1'
             }
-          ]}
+          })}
         />
       </div>
       <div>

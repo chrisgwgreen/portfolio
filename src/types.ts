@@ -37,4 +37,5 @@ export interface Mesh {
 
 export interface ContentProps {
   title?: string
+  images?: string[]
 }

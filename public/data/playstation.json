@@ -1,4 +1,5 @@
 {
   "title": "Playstation PS4",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper nisl vitae lacinia suscipit. Maecenas at risus urna. Nunc eget congue tortor."
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper nisl vitae lacinia suscipit. Maecenas at risus urna. Nunc eget congue tortor.",
+  "images": ["1.jpg", "2.png"]
 }

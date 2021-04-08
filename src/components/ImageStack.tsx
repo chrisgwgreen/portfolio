@@ -13,7 +13,7 @@ interface ImageProps {
 }
 
 interface Props {
-  images: ImageProps[]
+  images?: ImageProps[]
 }
 
 /*
@@ -62,7 +62,7 @@ export const ImageStack = (props: Props) => {
 
   useEffect(() => {
     let interval: NodeJS.Timeout
-    if (images.length > 1) {
+    if (images && images.length > 1) {
       interval = setInterval(() => {
         setthumbnailIndex(
           thumbnailIndex + 1 === images.length
@@ -75,7 +75,7 @@ export const ImageStack = (props: Props) => {
     return () => {
       interval && clearInterval(interval)
     }
-  }, [thumbnailIndex, images.length])
+  }, [thumbnailIndex, images])
 
   return (
     <ImageStackWrapper>
