@@ -9,7 +9,7 @@ import { Content } from 'containers'
 import { Router } from '@reach/router'
 import { BASE_PATH } from 'utils'
 
-function App() {
+export const App = () => {
   return (
     <>
       <Layout>
@@ -27,5 +27,3 @@ function App() {
     </>
   )
 }
-
-export default App

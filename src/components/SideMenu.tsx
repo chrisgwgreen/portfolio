@@ -11,7 +11,6 @@ interface Props {
 interface MenuLinkProps {
   to: string
   children: ReactNode | string
-  isMobileViewport: boolean
 }
 
 /*
@@ -105,7 +104,7 @@ export const MenuItem = styled(StyledLink)``
  * Component
  */
 export const MenuLink = (props: MenuLinkProps) => {
-  const { to, children, isMobileViewport } = props
+  const { to, children } = props
 
   const sideMenuContext = useContext(SideMenuContext)
 
@@ -113,7 +112,6 @@ export const MenuLink = (props: MenuLinkProps) => {
    * Event Handlers
    */
   const handleMenuLinkClick = () =>
-    isMobileViewport &&
     sideMenuContext.stateChangeHandler &&
     sideMenuContext.stateChangeHandler({
       isOpen: false

@@ -1,28 +1,4 @@
 {
-  "software": {
-    "title": "Software",
-    "projects": [
-      {
-        "title": "Playstation",
-        "id": "playstation"
-      },
-      {
-        "title": "LWTheatres",
-        "id": "lwtheatre"
-      }
-    ]
-  },
-  "hardware": {
-    "title": "Hardware",
-    "projects": [
-      {
-        "title": "Panic Relief",
-        "id": "panic-relief"
-      },
-      {
-        "title": "Alexa Lamp",
-        "id": "alexa-lamp"
-      }
-    ]
-  }
+  "title": "About GWGreen Ltd.",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper nisl vitae lacinia suscipit. Maecenas at risus urna. Nunc eget congue tortor."
 }

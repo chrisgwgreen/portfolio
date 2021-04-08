@@ -1,0 +1,28 @@
+{
+  "software": {
+    "title": "Software",
+    "projects": [
+      {
+        "title": "Playstation",
+        "id": "playstation"
+      },
+      {
+        "title": "LWTheatres",
+        "id": "lwtheatre"
+      }
+    ]
+  },
+  "hardware": {
+    "title": "Hardware",
+    "projects": [
+      {
+        "title": "Panic Relief",
+        "id": "panic-relief"
+      },
+      {
+        "title": "Alexa Lamp",
+        "id": "alexa-lamp"
+      }
+    ]
+  }
+}
