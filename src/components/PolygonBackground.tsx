@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styled, {
   DefaultTheme,
-  withTheme
+  withTheme,
+  css
 } from 'styled-components/macro'
 import { animate, media } from 'utils'
 import {
@@ -26,11 +27,17 @@ declare const FSS: {
   Mesh: Mesh
 }
 
-const PolygonBackgroundWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  background: #4671a6;
-`
+const PolygonBackgroundWrapper = styled.div((props) => {
+  const {
+    theme: { polygonBackground }
+  } = props
+
+  return css`
+    width: 100%;
+    height: 100%;
+    background: ${polygonBackground};
+  `
+})
 
 const Logo = styled.img`
   position: absolute;
@@ -267,7 +274,7 @@ export const PolygonBackground = withTheme((props: Props) => {
         polygonRef.current = ref as HTMLElement
       }}
     >
-      <Logo src="./gwg.svg" alt="logo" />
+      <Logo src={process.env.PUBLIC_URL + '/gwg.svg'} alt="logo" />
     </PolygonBackgroundWrapper>
   )
 })

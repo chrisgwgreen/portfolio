@@ -11,6 +11,7 @@ declare module 'styled-components' {
     // Main Colors
     color: string
     background: string
+    polygonBackground: string
 
     // Dimensions
     imageWidth: number
@@ -41,6 +42,7 @@ export const Theme = {
   // Main Colors
   color: '#212121',
   background: '#ffffff',
+  polygonBackground: '#9fcade',
 
   // Dimensions
   imageWidth: 224,
