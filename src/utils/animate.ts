@@ -56,6 +56,16 @@ export const fadeInAnimation = keyframes`
   }
 `
 
+export const fadeOutAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+`
+
 /*
  * Move Up Animation
  */

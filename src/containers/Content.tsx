@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { RouteComponentProps } from '@reach/router'
-import { LazyImage, Details } from 'components'
+import { ImageStack, Details } from 'components'
+import { media } from 'utils'
 
 /*
  * Styled Components
@@ -14,11 +15,12 @@ const ContentWrapper = styled.div`
 
   > div {
     flex: 1;
+    width: 100%;
   }
-`
 
-const ImageWrapper = styled.div`
-  width: 100%;
+  ${media.mobile} {
+    flex-direction: column;
+  }
 `
 
 const DetailsContentWrapper = styled.div`
@@ -32,12 +34,18 @@ export const Content = (props: RouteComponentProps) => {
   return (
     <ContentWrapper>
       <div>
-        <ImageWrapper>
-          <LazyImage
-            src={process.env.PUBLIC_URL + '/img/4.png'}
-            alt=""
-          />
-        </ImageWrapper>
+        <ImageStack
+          images={[
+            {
+              src: `${process.env.PUBLIC_URL}/img/1.jpg`,
+              alt: 'image 1'
+            },
+            {
+              src: `${process.env.PUBLIC_URL}/img/2.png`,
+              alt: 'image 1'
+            }
+          ]}
+        />
       </div>
       <div>
         <DetailsContentWrapper>
