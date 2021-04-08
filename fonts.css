@@ -1,0 +1,61 @@
+@font-face {
+  font-family: axiformaregular;
+  src: url(./fonts/axiforma_regular-webfont.woff2) format('woff2'),
+    url(./fonts/axiforma_regular-webfont.woff) format('woff');
+}
+
+@font-face {
+  font-family: axiformabold;
+  src: url(./fonts/axiforma_bold-webfont.woff2) format('woff2'),
+    url(./fonts/axiforma_bold-webfont.woff) format('woff');
+}
+
+@font-face {
+  font-family: axiformathin;
+  src: url(./fonts/axiforma_thin-webfont.woff2) format('woff2'),
+    url(./fonts/axiforma_thin-webfont.woff) format('woff');
+}
+
+/* Tests */
+
+@font-face {
+  font-family: lato-light;
+  src: url(./fonts/lato-light-webfont.woff2) format('woff2'),
+    url(./fonts/lato-light-webfont.woff) format('woff');
+}
+
+@font-face {
+  font-family: montserrat-light;
+  src: url(./fonts/montserrat-light-webfont.woff2) format('woff2'),
+    url(./fonts/montserrat-light-webfont.woff) format('woff');
+}
+@font-face {
+  font-family: montserratregular;
+  src: url(./fonts/montserrat-regular.woff2) format('woff2'),
+    url(./fonts/montserrat-regular.woff) format('woff');
+}
+@font-face {
+  font-family: nunitosans-extralight;
+  src: url(./fonts/nunitosans-extralight-webfont.woff2)
+      format('woff2'),
+    url(./fonts/nunitosans-extralight-webfont.woff) format('woff');
+}
+
+@font-face {
+  font-family: poppins-thin;
+  src: url(./fonts/poppins-thin-webfont.woff2) format('woff2'),
+    url(./fonts/poppins-thin-webfont.woff) format('woff');
+}
+
+/* 
+
+Fjalla One + Noto Sans
+
+Rubik & Karla
+
+PT Sans Narrow + PT Sans
+
+Archivo Black & Roboto
+
+
+*/
