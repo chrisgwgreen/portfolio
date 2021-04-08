@@ -17,6 +17,7 @@ declare module 'styled-components' {
     imageWidth: number
     menuHeight: number
 
+    // Polygon
     Mesh: {
       width: number
       height: number
@@ -48,6 +49,7 @@ export const Theme = {
   imageWidth: 224,
   menuHeight: 60,
 
+  // Polygon
   Mesh: {
     width: 1.2,
     height: 1.2,

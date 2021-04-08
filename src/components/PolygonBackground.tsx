@@ -4,7 +4,13 @@ import styled, {
   withTheme,
   css
 } from 'styled-components/macro'
-import { animate, media } from 'utils'
+import { RouteComponentProps } from '@reach/router'
+import {
+  easeAnimation,
+  media,
+  fadeInAnimation,
+  moveUpAnimation
+} from 'utils'
 import {
   Scene,
   Renderer,
@@ -14,7 +20,7 @@ import {
   Mesh
 } from '../types'
 
-interface Props {
+interface Props extends RouteComponentProps {
   theme: DefaultTheme
 }
 
@@ -27,6 +33,9 @@ declare const FSS: {
   Mesh: Mesh
 }
 
+/*
+ * Styled Components
+ */
 const PolygonBackgroundWrapper = styled.div((props) => {
   const {
     theme: { polygonBackground }
@@ -50,6 +59,9 @@ const Logo = styled.img`
   margin-top: -150px;
   pointer-events: none;
 
+  animation: ${fadeInAnimation} 0.5s ease-out forwards,
+    ${moveUpAnimation} 0.5s ease-out forwards;
+
   ${media.tablet} {
     width: 250px;
     height: 250px;
@@ -65,6 +77,9 @@ const Logo = styled.img`
   }
 `
 
+/*
+ * Component
+ */
 export const PolygonBackground = withTheme((props: Props) => {
   const {
     theme: { Mesh, Lights }
@@ -132,6 +147,9 @@ export const PolygonBackground = withTheme((props: Props) => {
     let isTicking = false
     let isMouseover = false
 
+    /*
+     * Event Handlers
+     */
     const handleResize = () => {
       if (polygonRef.current && geometry && renderer && scene) {
         renderer.setSize(
@@ -206,7 +224,7 @@ export const PolygonBackground = withTheme((props: Props) => {
         ) => {
           const currentTime = window.performance.now() - startTime
 
-          const { x, y } = animate(
+          const { x, y } = easeAnimation(
             startX,
             endX,
             startY,

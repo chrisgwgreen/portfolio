@@ -1,6 +1,7 @@
+import { keyframes } from 'styled-components/macro'
 import { Easing } from './easing'
 
-export const animate = (
+export const easeAnimation = (
   startX: number,
   endX: number,
   startY: number,
@@ -41,3 +42,28 @@ export const animate = (
 
   return { x, y }
 }
+
+/*
+ * Fade Animation
+ */
+export const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
+
+/*
+ * Move Up Animation
+ */
+export const moveUpAnimation = keyframes`
+  0% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`
