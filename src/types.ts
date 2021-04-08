@@ -34,3 +34,7 @@ export interface Mesh {
   width: number
   height: number
 }
+
+export interface ContentProps {
+  title?: string
+}

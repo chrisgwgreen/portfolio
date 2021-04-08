@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { RouteComponentProps } from '@reach/router'
 import { ImageStack, Details } from 'components'
 import { media } from 'utils'
+import { ContentProps } from 'types'
+
+interface Props extends RouteComponentProps {
+  projectId?: string
+}
 
 /*
  * Styled Components
@@ -30,7 +35,24 @@ const DetailsContentWrapper = styled.div`
 /*
  * Component
  */
-export const Content = (props: RouteComponentProps) => {
+export const Content = (props: Props) => {
+  const { projectId } = props
+
+  const [content, setContent] = useState<ContentProps>()
+
+  useEffect(() => {
+    fetch(`${process.env.PUBLIC_URL}/data/${projectId}.json`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    })
+      .then((response) => response.json())
+      .then((projectContent) => {
+        setContent(projectContent)
+      })
+  }, [projectId])
+
   return (
     <ContentWrapper>
       <div>
@@ -49,7 +71,9 @@ export const Content = (props: RouteComponentProps) => {
       </div>
       <div>
         <DetailsContentWrapper>
-          <Details title="Playstation" />
+          {content && content.title && (
+            <Details title={content.title} />
+          )}
         </DetailsContentWrapper>
       </div>
     </ContentWrapper>

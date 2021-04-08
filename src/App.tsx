@@ -1,11 +1,6 @@
 import React, { Fragment } from 'react'
-import {
-  Layout,
-  PolygonBackground,
-  DashboardMenu,
-  CompanyTitle
-} from 'components'
-import { Content } from 'containers'
+import { Layout, PolygonBackground, CompanyTitle } from 'components'
+import { Content, DashboardMenu } from 'containers'
 import { Router } from '@reach/router'
 import { BASE_PATH } from 'utils'
 
