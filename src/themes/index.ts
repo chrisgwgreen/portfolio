@@ -38,7 +38,7 @@ export const Theme = {
 
   // Font
   headerFont: 'montserratregular',
-  copyFont: 'lato-light',
+  copyFont: 'latolight',
 
   // Main Colors
   color: '#212121',

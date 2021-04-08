@@ -45,6 +45,8 @@ const PolygonBackgroundWrapper = styled.div((props) => {
     width: 100%;
     height: 100%;
     background: ${polygonBackground};
+    opacity: 0;
+    animation: ${fadeInAnimation} 0.5s ease-out forwards 0.2s;
   `
 })
 

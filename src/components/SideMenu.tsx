@@ -26,7 +26,7 @@ const SideMenuToggleWrapper = styled.div((props) => {
     position: absolute;
     fill: ${color};
     right: 0;
-    bottom: 0;
+    top: 0;
     padding: 1rem;
     cursor: pointer;
     z-index: 1;
@@ -50,11 +50,13 @@ const SideMenuCloseWrapper = styled.div((props) => {
 
 const SideMenuWrapper = styled.div((props) => {
   const {
-    theme: { color, background }
+    theme: { color, background, headerFont }
   } = props
 
   return css`
     fill: ${color};
+    font-family: axiformathin;
+    font-family: montserratregular;
 
     .bm-menu {
       background: ${background};
@@ -72,10 +74,11 @@ const SideMenuWrapper = styled.div((props) => {
 const MenuLinkWrapper = styled.div<{ isActive: boolean }>((props) => {
   const {
     isActive,
-    theme: { background }
+    theme: { color, polygonBackground }
   } = props
 
   return css`
+    box-sizing: content-box;
     position: relative;
     transition: opacity 0.4s;
     text-transform: uppercase;
@@ -83,14 +86,15 @@ const MenuLinkWrapper = styled.div<{ isActive: boolean }>((props) => {
     padding: 0.75rem 1rem;
     transition: background 0.4s;
     display: flex;
+    border-bottom: 1px solid transparent;
 
     :hover {
-      background: ${background};
+      border-bottom: 1px solid ${color};
     }
 
     ${isActive &&
     css`
-      background: ${background};
+      border-bottom: 1px solid ${polygonBackground};
     `}
   `
 })
