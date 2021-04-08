@@ -22,11 +22,11 @@ const DetailsWrapper = styled.div((props) => {
 
 const DetailsTitle = styled.h3((props) => {
   const {
-    theme: { headerFont, color }
+    theme: { largeHeaderFont, color }
   } = props
 
   return css`
-    font-family: ${headerFont};
+    font-family: ${largeHeaderFont};
     letter-spacing: 2px;
     text-transform: uppercase;
     font-size: 3rem;

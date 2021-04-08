@@ -49,7 +49,7 @@ export const Content = (props: RouteComponentProps) => {
       </div>
       <div>
         <DetailsContentWrapper>
-          <Details title="Hello World" />
+          <Details title="Playstation" />
         </DetailsContentWrapper>
       </div>
     </ContentWrapper>

@@ -5,6 +5,7 @@ declare module 'styled-components' {
     name: string
 
     // Font
+    largeHeaderFont: string
     headerFont: string
     copyFont: string
 
@@ -37,6 +38,7 @@ export const Theme = {
   name: 'Theme',
 
   // Font
+  largeHeaderFont: 'montserratthin',
   headerFont: 'montserratregular',
   copyFont: 'latolight',
 

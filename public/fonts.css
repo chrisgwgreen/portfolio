@@ -17,7 +17,19 @@
 }
 
 @font-face {
-  font-family: merriweatherlight;
-  src: url(./fonts/merriweather_light-webfont.woff2) format('woff2'),
-    url(./fonts/merriweather_light-webfont.woff) format('woff');
+  font-family: montserratlight;
+  src: url(./fonts/montserrat-light.woff2) format('woff2'),
+    url(./fonts/montserrat-light.woff) format('woff');
+}
+
+@font-face {
+  font-family: montserratthin;
+  src: url(./fonts/montserrat-thin.woff2) format('woff2'),
+    url(./fonts/montserrat-thin.woff) format('woff');
+}
+
+@font-face {
+  font-family: montserratextralight;
+  src: url(./fonts/montserrat-extralight.woff) format('woff2'),
+    url(./fonts/montserrat-extralight.woff2) format('woff');
 }
