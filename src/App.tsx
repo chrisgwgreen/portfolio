@@ -1,16 +1,30 @@
 import React, { Fragment } from 'react'
-import { Layout, PolygonBackground } from 'components'
+import {
+  Layout,
+  PolygonBackground,
+  DashboardMenu,
+  CompanyTitle
+} from 'components'
 import { Content } from 'containers'
 import { Router } from '@reach/router'
+import { BASE_PATH } from 'utils'
 
 function App() {
   return (
-    <Layout>
-      <Router primary={false} component={Fragment}>
-        <PolygonBackground path="/" />
-        <Content path="/project/:projectId/" />
-      </Router>
-    </Layout>
+    <>
+      <Layout>
+        <DashboardMenu />
+        <Router
+          primary={false}
+          component={Fragment}
+          basepath={BASE_PATH}
+        >
+          <PolygonBackground path="/" />
+          <Content path="/project/:projectId/" />
+        </Router>
+      </Layout>
+      <CompanyTitle />
+    </>
   )
 }
 

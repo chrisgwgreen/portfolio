@@ -58,9 +58,10 @@ const Logo = styled.img`
   margin-left: -150px;
   margin-top: -150px;
   pointer-events: none;
+  opacity: 0;
 
-  animation: ${fadeInAnimation} 0.5s ease-out forwards,
-    ${moveUpAnimation} 0.5s ease-out forwards;
+  animation: ${fadeInAnimation} 0.5s ease-out forwards 0.4s,
+    ${moveUpAnimation} 0.5s ease-out forwards 0.4s;
 
   ${media.tablet} {
     width: 250px;

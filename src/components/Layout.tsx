@@ -21,6 +21,7 @@ const LayoutWrapper = styled.div<{ isColumn: boolean }>((props) => {
     margin: 3rem 3rem 0 3rem;
     position: relative;
     background: ${background};
+    overflow: hidden;
 
     ${media.tablet} {
       width: calc(100% - 4rem);
@@ -36,35 +37,11 @@ const LayoutWrapper = styled.div<{ isColumn: boolean }>((props) => {
   `
 })
 
-const CompanyTitle = styled.h1((props) => {
-  const {
-    theme: { headerFont }
-  } = props
-
-  return css`
-    font-family: ${headerFont};
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    font-weight: normal;
-
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: -4rem;
-  `
-})
-
 /*
  * Component
  */
 export const Layout = (props: Props) => {
   const { children, isColumn = true } = props
 
-  return (
-    <LayoutWrapper isColumn={isColumn}>
-      {children}
-      <CompanyTitle>GWGreen Ltd.</CompanyTitle>
-    </LayoutWrapper>
-  )
+  return <LayoutWrapper isColumn={isColumn}>{children}</LayoutWrapper>
 }

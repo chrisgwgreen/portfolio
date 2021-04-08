@@ -1,3 +1,5 @@
+export type IconPaddingOptions = 'none' | 'default' | 'small'
+
 export interface Scene {
   new (): any
   add: (arg: any) => void
