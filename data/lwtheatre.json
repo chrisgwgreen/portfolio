@@ -1,4 +1,10 @@
 {
   "title": "LWTheatres",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper nisl vitae lacinia suscipit. Maecenas at risus urna. Nunc eget congue tortor."
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper nisl vitae lacinia suscipit. Maecenas at risus urna. Nunc eget congue tortor.",
+  "images": [
+    "phantom1.png",
+    "phantom2.png",
+    "phantom3.png",
+    "phantom4.png"
+  ]
 }
