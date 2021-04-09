@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { RouteComponentProps } from '@reach/router'
 import { ImageStack, Details } from 'components'
-import { media } from 'utils'
+import { media, fadeInAnimation } from 'utils'
 import { ContentProps } from 'types'
 
 interface Props extends RouteComponentProps {
@@ -17,6 +17,8 @@ const ContentWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   height: 100%;
+  opacity: 0;
+  animation: ${fadeInAnimation} 0.4s forwards;
 
   > div {
     flex: 1;
@@ -52,8 +54,6 @@ export const Content = (props: Props) => {
         setContent(projectContent)
       })
   }, [projectId])
-
-  console.log(content)
 
   return (
     <ContentWrapper>

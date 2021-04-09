@@ -25,6 +25,7 @@ const ImageStackWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  animation: ${fadeInAnimation} 0.4s forwards;
 `
 
 const ThumbnailWrapper = styled.div<{
