@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Layout, PolygonBackground, CompanyTitle } from 'components'
-import { Content, DashboardMenu } from 'containers'
+import { Content, Menu } from 'containers'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 export const App = () => {
@@ -8,8 +8,6 @@ export const App = () => {
     <>
       <Router>
         <Layout>
-          <DashboardMenu />
-
           <Switch>
             <Route path="/project/:projectId/">
               <Content />
@@ -18,6 +16,7 @@ export const App = () => {
               <PolygonBackground />
             </Route>
           </Switch>
+          <Menu />
         </Layout>
         <CompanyTitle />
       </Router>

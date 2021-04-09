@@ -66,6 +66,26 @@ export const fadeOutAnimation = keyframes`
   }
 `
 
+export const menuOpenAnimation = keyframes`
+  from {
+    transform: translateX(-300px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+`
+
+export const menuCloseAnimation = keyframes`
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-300px);
+  }
+`
+
 /*
  * Move Up Animation
  */
