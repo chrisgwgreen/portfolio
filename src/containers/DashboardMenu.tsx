@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
-import { BASE_PATH } from 'utils'
 import {
   SideMenuProvider,
   Navigation,
@@ -70,7 +69,7 @@ export const DashboardMenu = () => {
             return (
               <MenuLink
                 key={`menu-project-${id}`}
-                to={`${BASE_PATH}/project/${id}`}
+                to={`/project/${id}`}
               >
                 {title}
               </MenuLink>
@@ -86,7 +85,7 @@ export const DashboardMenu = () => {
         <SideMenuToggle />
         <Navigation>
           <DashboardMenuWrapper>
-            <MenuLink to={`${BASE_PATH}/`}>Home</MenuLink>
+            <MenuLink to={`/`}>Home</MenuLink>
             {menu}
           </DashboardMenuWrapper>
         </Navigation>

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components/macro'
 import { RouteComponentProps, Link } from '@reach/router'
-import { BASE_PATH } from 'utils'
 
 /*
  * Styled Components
@@ -30,7 +29,7 @@ const CompanyTitleWrapper = styled.h1((props) => {
  */
 export const CompanyTitle = (props: RouteComponentProps) => {
   return (
-    <Link to={`${BASE_PATH}/`}>
+    <Link to={`/`}>
       <CompanyTitleWrapper>GWGreen Ltd.</CompanyTitleWrapper>
     </Link>
   )
