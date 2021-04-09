@@ -1,32 +1,26 @@
 import React, { Fragment } from 'react'
 import { Layout, PolygonBackground, CompanyTitle } from 'components'
 import { Content, DashboardMenu } from 'containers'
-import {
-  Router,
-  LocationProvider,
-  createHistory,
-  HistorySource
-} from '@reach/router'
-
-import createHashSource from 'hash-source'
-
-const source = createHashSource()
-
-const history = createHistory(source as HistorySource)
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 export const App = () => {
   return (
     <>
-      <LocationProvider history={history}>
+      <Router>
         <Layout>
           <DashboardMenu />
-          <Router primary={false} component={Fragment}>
-            <PolygonBackground path="/" />
-            <Content path="/project/:projectId/" />
-          </Router>
+
+          <Switch>
+            <Route path="/project/:projectId/">
+              <Content />
+            </Route>
+            <Route path="/">
+              <PolygonBackground />
+            </Route>
+          </Switch>
         </Layout>
         <CompanyTitle />
-      </LocationProvider>
+      </Router>
     </>
   )
 }

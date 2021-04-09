@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components/macro'
-import { Link } from '@reach/router'
+import { NavLink } from 'react-router-dom'
 import { Icon, IconName } from 'components'
 
 interface Props {
@@ -23,7 +23,7 @@ const LinkWrapper = styled((props) => {
   delete linkProps.isBlock
   delete linkProps.isHoverOpacityDisabled
 
-  return <Link {...linkProps} />
+  return <NavLink {...linkProps} />
 })((props) => {
   const {
     theme: {

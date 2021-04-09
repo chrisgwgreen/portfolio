@@ -4,7 +4,6 @@ import styled, {
   withTheme,
   css
 } from 'styled-components/macro'
-import { RouteComponentProps } from '@reach/router'
 import {
   easeAnimation,
   media,
@@ -20,7 +19,7 @@ import {
   Mesh
 } from '../types'
 
-interface Props extends RouteComponentProps {
+interface Props {
   theme: DefaultTheme
 }
 

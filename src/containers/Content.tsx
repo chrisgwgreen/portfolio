@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
-import { RouteComponentProps } from '@reach/router'
+import { useParams } from 'react-router-dom'
 import { ImageStack, Details } from 'components'
 import { media, fadeInAnimation } from 'utils'
 import { ContentProps } from 'types'
 
-interface Props extends RouteComponentProps {
+interface Props {
   projectId?: string
 }
 
@@ -37,8 +37,8 @@ const DetailsContentWrapper = styled.div`
 /*
  * Component
  */
-export const Content = (props: Props) => {
-  const { projectId } = props
+export const Content = () => {
+  const { projectId } = useParams<Props>()
 
   const [content, setContent] = useState<ContentProps>()
 

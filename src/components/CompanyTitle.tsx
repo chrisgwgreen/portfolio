@@ -1,6 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components/macro'
-import { RouteComponentProps, Link } from '@reach/router'
+import { Link } from 'react-router-dom'
 
 /*
  * Styled Components
@@ -27,7 +27,7 @@ const CompanyTitleWrapper = styled.h1((props) => {
 /*
  * Component
  */
-export const CompanyTitle = (props: RouteComponentProps) => {
+export const CompanyTitle = () => {
   return (
     <Link to={`/`}>
       <CompanyTitleWrapper>GWGreen Ltd.</CompanyTitleWrapper>
