@@ -1,7 +1,6 @@
 import React, { useState, useContext, ReactNode } from 'react'
 import styled, { css } from 'styled-components/macro'
 import { slide as Menu, State } from 'react-burger-menu'
-import { Match } from '@reach/router'
 import { Icon, StyledLink } from 'components'
 
 interface Props {
@@ -117,20 +116,26 @@ export const MenuLink = (props: MenuLinkProps) => {
       isOpen: false
     })
 
+  // return (
+  //   <Match path={to}>
+  //     {({ match }) => (
+  //       <StyledLink
+  //         to={to}
+  //         onClick={handleMenuLinkClick}
+  //         isHoverOpacityDisabled={!!match}
+  //       >
+  //         <MenuLinkWrapper isActive={!!match}>
+  //           {children}
+  //         </MenuLinkWrapper>
+  //       </StyledLink>
+  //     )}
+  //   </Match>
+  // )
+
   return (
-    <Match path={to}>
-      {({ match }) => (
-        <StyledLink
-          to={to}
-          onClick={handleMenuLinkClick}
-          isHoverOpacityDisabled={!!match}
-        >
-          <MenuLinkWrapper isActive={!!match}>
-            {children}
-          </MenuLinkWrapper>
-        </StyledLink>
-      )}
-    </Match>
+    <StyledLink to={to} onClick={handleMenuLinkClick}>
+      <MenuLinkWrapper isActive={false}>{children}</MenuLinkWrapper>
+    </StyledLink>
   )
 }
 
