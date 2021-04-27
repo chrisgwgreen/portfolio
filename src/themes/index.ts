@@ -19,6 +19,8 @@ declare module 'styled-components' {
     menuHeight: number
     menuWidth: number
 
+    boxShadow: string
+
     // Polygon
     Mesh: {
       width: number
@@ -52,6 +54,8 @@ export const Theme = {
   imageWidth: 224,
   menuHeight: 60,
   menuWidth: 18.75,
+
+  boxShadow: '0 0 0.5rem 0 rgba(0, 0, 0, 0.2)',
 
   // Polygon
   Mesh: {

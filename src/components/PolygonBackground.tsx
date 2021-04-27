@@ -11,12 +11,12 @@ import {
   moveUpAnimation
 } from 'utils'
 import {
-  Scene,
-  Renderer,
-  Light,
-  Plane,
-  Material,
-  Mesh
+  SceneProps,
+  RendererProps,
+  LightProps,
+  PlaneProps,
+  MaterialProps,
+  MeshProps
 } from '../types'
 
 interface Props {
@@ -24,12 +24,12 @@ interface Props {
 }
 
 declare const FSS: {
-  Scene: Scene
-  Light: Light
-  Plane: Plane
-  CanvasRenderer: Renderer
-  Material: Material
-  Mesh: Mesh
+  Scene: SceneProps
+  Light: LightProps
+  Plane: PlaneProps
+  CanvasRenderer: RendererProps
+  Material: MaterialProps
+  Mesh: MeshProps
 }
 
 /*
@@ -89,10 +89,10 @@ export const PolygonBackground = withTheme((props: Props) => {
 
   const polygonRef = useRef<HTMLElement>()
 
-  const [scene, setScene] = useState<Scene>()
-  const [renderer, setRenderer] = useState<Renderer>()
-  const [geometry, setGeometry] = useState<Plane>()
-  const [spotlight, setSpotlight] = useState<Light>()
+  const [scene, setScene] = useState<SceneProps>()
+  const [renderer, setRenderer] = useState<RendererProps>()
+  const [geometry, setGeometry] = useState<PlaneProps>()
+  const [spotlight, setSpotlight] = useState<LightProps>()
 
   useEffect(() => {
     if (polygonRef.current) {

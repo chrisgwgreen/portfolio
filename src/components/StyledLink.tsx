@@ -9,14 +9,13 @@ interface Props {
   asButton?: boolean
   icon?: IconName
   isBlock?: boolean
-  isHoverOpacityDisabled?: boolean
   onClick?: () => void
 }
 
 /*
  * Styled Components
  */
-const LinkWrapper = styled((props) => {
+const StyledLinkWrapper = styled((props) => {
   const linkProps = { ...props }
 
   delete linkProps.asButton
@@ -34,8 +33,7 @@ const LinkWrapper = styled((props) => {
       borderRadius
     },
     asButton,
-    isBlock,
-    isHoverOpacityDisabled
+    isBlock
   } = props
 
   return css`
@@ -43,15 +41,6 @@ const LinkWrapper = styled((props) => {
     fill: ${color};
     text-decoration: none;
     cursor: pointer;
-
-    ${!isHoverOpacityDisabled &&
-    css`
-      opacity: 0.6;
-
-      :hover {
-        opacity: 1;
-      }
-    `}
 
     div {
       margin-right: 0.5rem;
@@ -94,8 +83,7 @@ export const StyledLink = (props: Props) => {
     asButton = false,
     icon,
     onClick,
-    isBlock = false,
-    isHoverOpacityDisabled = false
+    isBlock = false
   } = props
 
   /*
@@ -107,15 +95,14 @@ export const StyledLink = (props: Props) => {
   }
 
   return (
-    <LinkWrapper
+    <StyledLinkWrapper
       to={to}
       onClick={handleClick}
       asButton={asButton}
-      isHoverOpacityDisabled={isHoverOpacityDisabled}
       isBlock={isBlock}
     >
       {icon && <Icon icon={icon} isShadow />}
       {children}
-    </LinkWrapper>
+    </StyledLinkWrapper>
   )
 }

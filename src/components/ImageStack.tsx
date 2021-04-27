@@ -19,14 +19,23 @@ interface Props {
 /*
  * Styled Components
  */
-const ImageStackWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  animation: ${fadeInAnimation} 0.4s forwards;
-`
+const ImageStackWrapper = styled.div((props) => {
+  const {
+    theme: { boxShadow }
+  } = props
+
+  return css`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    animation: ${fadeInAnimation} 0.4s forwards;
+
+    box-shadow: ${boxShadow};
+  `
+})
 
 const ThumbnailWrapper = styled.div<{
   isSelected: boolean

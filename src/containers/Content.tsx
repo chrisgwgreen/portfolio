@@ -34,6 +34,10 @@ const DetailsContentWrapper = styled.div`
   margin: 2rem;
 `
 
+const ImageWrapper = styled.div`
+  margin-left: 1rem;
+`
+
 /*
  * Component
  */
@@ -57,7 +61,7 @@ export const Content = () => {
 
   return (
     <ContentWrapper>
-      <div>
+      <ImageWrapper>
         <ImageStack
           images={content?.images?.map((image) => {
             return {
@@ -66,7 +70,7 @@ export const Content = () => {
             }
           })}
         />
-      </div>
+      </ImageWrapper>
       <div>
         <DetailsContentWrapper>
           {content && content.title && (

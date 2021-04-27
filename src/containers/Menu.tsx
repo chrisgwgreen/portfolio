@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled, { css } from 'styled-components/macro'
-import { Icon, MenuLink, StyledLink } from 'components'
+import { Icon, StyledLink, Burger } from 'components'
 import {
   fadeInAnimation,
   fadeOutAnimation,
@@ -126,9 +126,9 @@ const MenuOverlay = styled.div<{ isMenuClosing: boolean }>(
 )
 
 const Partition = styled.span`
-  opacity: 0.6;
+  opacity: 0.5;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 0.8125rem;
   display: block;
   padding: 0.75rem 1rem;
 `
@@ -146,7 +146,6 @@ const MenuLinkWrapper = styled.div<{ isActive: boolean }>((props) => {
     text-transform: uppercase;
     font-size: 0.8125rem;
     padding: 0.75rem 1rem;
-    transition: background 0.4s;
     display: flex;
     border-bottom: 1px solid transparent;
 
@@ -227,7 +226,7 @@ export const Menu = () => {
   return (
     <>
       <MenuOpenWrapper onClick={handleMenuToggle}>
-        <Icon icon="bars" />
+        <Burger />
       </MenuOpenWrapper>
       {isMenuOpen && (
         <MenuOverlay

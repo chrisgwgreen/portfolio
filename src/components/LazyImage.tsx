@@ -12,13 +12,15 @@ interface Props {
  */
 const ImageWrapper = styled.div((props) => {
   const {
-    theme: { background }
+    theme: { background, boxShadow }
   } = props
 
   return css`
     width: 100%;
     height: 100%;
     background: ${background};
+
+    box-shadow: ${boxShadow};
   `
 })
 
