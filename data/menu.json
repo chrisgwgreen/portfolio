@@ -9,12 +9,28 @@
       {
         "title": "LWTheatres",
         "id": "lwtheatre"
+      },
+      {
+        "title": "All4",
+        "id": "all4"
+      },
+      {
+        "title": "Splitune",
+        "id": "splitune"
+      },
+      {
+        "title": "Sign",
+        "id": "sign"
       }
     ]
   },
   "hardware": {
     "title": "Hardware",
     "projects": [
+      {
+        "title": "Lantern",
+        "id": "lantern"
+      },
       {
         "title": "Panic Relief",
         "id": "panic-relief"
