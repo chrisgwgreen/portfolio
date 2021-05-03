@@ -16,7 +16,7 @@ export const App = () => {
               <PolygonBackground />
             </Route>
           </Switch>
-          <Menu />
+          {/* <Menu /> */}
         </Layout>
         <CompanyTitle />
       </Router>
