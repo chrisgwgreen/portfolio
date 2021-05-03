@@ -66,6 +66,26 @@ export const fadeOutAnimation = keyframes`
   }
 `
 
+export const fadeInFastAnimation = keyframes`
+  0% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+`
+
+export const fadeOutFastAnimation = keyframes`
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+`
+
 export const menuOpenAnimation = keyframes`
   from {
     transform: translateX(-300px);

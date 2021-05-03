@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components/macro'
 import { LazyImage } from 'components'
 import {
   fadeInAnimation,
-  fadeOutAnimation,
+  fadeInFastAnimation,
+  fadeOutFastAnimation,
   IMAGE_STACK_DELAY
 } from 'utils'
 
@@ -51,13 +52,14 @@ const ThumbnailWrapper = styled.div<{
 
     ${isSelected &&
     css`
-      animation: ${fadeInAnimation} ${IMAGE_STACK_DELAY}s forwards;
+      animation: ${fadeInFastAnimation} ${IMAGE_STACK_DELAY}s forwards;
       pointer-events: initial;
     `}
 
     ${wasSelected &&
     css`
-      animation: ${fadeOutAnimation} ${IMAGE_STACK_DELAY}s forwards;
+      animation: ${fadeOutFastAnimation} ${IMAGE_STACK_DELAY}s
+        forwards;
     `}
   `
 })

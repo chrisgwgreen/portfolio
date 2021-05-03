@@ -29,6 +29,7 @@ const DetailsTitle = styled.h3((props) => {
     font-family: ${largeHeaderFont};
     letter-spacing: 2px;
     text-transform: uppercase;
+    overflow-wrap: anywhere;
     font-size: 3rem;
     color: ${color};
   `
