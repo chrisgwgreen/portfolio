@@ -1,19 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import { ThemeProvider } from "@mui/system";
+import { muiTheme } from "themes";
+import { Layout, App } from "components";
+import { DataProvider } from "contexts";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import "assets/index.css";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const element = document.getElementById("root");
+const root = ReactDOM.createRoot(element!);
+
+const Root = () => {
+  return (
+    <StrictMode>
+      <DataProvider>
+        <ThemeProvider theme={muiTheme}>
+          <Layout>
+            <App />
+          </Layout>
+        </ThemeProvider>
+      </DataProvider>
+    </StrictMode>
+  );
+};
+
+root.render(<Root />);
