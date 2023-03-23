@@ -23,10 +23,10 @@ const LogoWrapper = styled(GWGLogo)`
   }
 
   ${media.mobile} {
-    width: 200px;
-    height: 200px;
-    margin-left: -100px;
-    margin-top: -100px;
+    width: 150px;
+    height: 150px;
+    margin-left: -75px;
+    margin-top: -75px;
   }
 `
 

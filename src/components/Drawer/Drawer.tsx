@@ -18,6 +18,8 @@ const Wrapper = styled(animated.div)`
   background: #fff;
   z-index: 2;
   opacity: 0;
+  padding: 2rem;
+  overflow-y: scroll;
 `
 
 const CloseWrapper = styled('button')`
@@ -28,6 +30,8 @@ const CloseWrapper = styled('button')`
   background: #fff;
   margin: 0.5rem;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 `
 
 export const Drawer = (props: Props) => {

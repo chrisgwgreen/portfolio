@@ -28,7 +28,8 @@ const ContentWrapper = styled('div')`
   position: relative;
 
   ${media.mobile} {
-    margin: 2rem;
+    margin: 1rem;
+    height: calc(100% - 4rem);
   }
 `
 

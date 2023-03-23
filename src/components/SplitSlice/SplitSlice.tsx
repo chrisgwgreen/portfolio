@@ -7,53 +7,50 @@ interface Props {
   isSecondaryOnTopResponsive?: boolean
 }
 
-const Wrapper = styled('div')<{ isSecondaryOnTopResponsive: boolean }>(
-  ({ isSecondaryOnTopResponsive, theme: { breakpoints } }) => {
-    return css`
-      display: flex;
-      flex-direction: row;
-      margin: 6rem 0;
+const Wrapper = styled('div')(({ theme: { breakpoints } }) => {
+  return css`
+    display: flex;
+    flex-direction: row;
 
-      ${breakpoints.down('md')} {
-        flex-direction: ${isSecondaryOnTopResponsive
-          ? 'column-reverse'
-          : 'column'};
-      }
-    `
-  }
-)
+    ${breakpoints.down('md')} {
+      flex-direction: column-reverse;
+    }
+  `
+})
 
-const Content = styled('div')(({ theme: { breakpoints } }) => {
+const PrimaryContent = styled('div')(({ theme: { breakpoints } }) => {
   return css`
     width: 100%;
-    margin-top: 6rem;
+    margin-top: -6rem;
+    z-index: 2;
 
     ${breakpoints.up('md')} {
       width: 50%;
-      margin-top: 0rem;
+      margin-top: 0;
+    }
+  `
+})
 
-      :first-of-type {
-        margin-right: 1rem;
-      }
+const SecondaryContent = styled('div')(({ theme: { breakpoints } }) => {
+  return css`
+    width: 100%;
+    margin-left: 0;
 
-      :last-of-type {
-        margin-left: 1rem;
-      }
+    ${breakpoints.up('md')} {
+      width: 50%;
+      margin-top: 0;
+      margin-left: 3rem;
     }
   `
 })
 
 export const SplitSlice = (props: Props) => {
-  const {
-    renderPrimary,
-    renderSecondary,
-    isSecondaryOnTopResponsive = false
-  } = props
+  const { renderPrimary, renderSecondary } = props
 
   return (
-    <Wrapper isSecondaryOnTopResponsive={isSecondaryOnTopResponsive}>
-      <Content>{renderPrimary()}</Content>
-      <Content>{renderSecondary()}</Content>
+    <Wrapper>
+      <PrimaryContent>{renderPrimary()}</PrimaryContent>
+      <SecondaryContent>{renderSecondary()}</SecondaryContent>
     </Wrapper>
   )
 }
