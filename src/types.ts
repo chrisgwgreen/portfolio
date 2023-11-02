@@ -45,3 +45,18 @@ export interface rgb {
   g: number
   b: number
 }
+
+export interface Image {
+  src: string
+  width: number
+  height: number
+  fileName: string
+  title?: string
+  alt?: string
+}
+
+// TODO OMIT...
+export interface HTMLImage {
+  src: string
+  alt?: string
+}

@@ -1,7 +1,7 @@
-import { useSpring, animated } from 'react-spring'
-import { styled } from '@mui/system'
 import CloseIcon from '@mui/icons-material/Close'
+import { styled } from '@mui/system'
 import { useWindowSize } from 'hooks'
+import { animated, useSpring } from 'react-spring'
 
 interface Props {
   show: boolean
@@ -20,6 +20,7 @@ const Wrapper = styled(animated.div)`
   opacity: 0;
   padding: 2rem;
   overflow-y: scroll;
+  overflow-x: hidden;
 `
 
 const CloseWrapper = styled('button')`
@@ -44,13 +45,11 @@ export const Drawer = (props: Props) => {
   })
 
   return (
-    <>
-      <Wrapper style={styles}>
-        <CloseWrapper onClick={onClose}>
-          <CloseIcon fontSize='medium' />
-        </CloseWrapper>
-        {children}
-      </Wrapper>
-    </>
+    <Wrapper style={styles}>
+      <CloseWrapper onClick={onClose}>
+        <CloseIcon fontSize='medium' />
+      </CloseWrapper>
+      {children}
+    </Wrapper>
   )
 }

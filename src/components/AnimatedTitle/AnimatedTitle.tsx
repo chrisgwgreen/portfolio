@@ -1,6 +1,6 @@
+import { css, styled } from '@mui/system'
+import { animated, useTrail } from '@react-spring/web'
 import React from 'react'
-import { styled, css } from '@mui/system'
-import { useTrail, animated } from '@react-spring/web'
 import { useInView } from 'react-intersection-observer'
 import { v4 as uuidv4 } from 'uuid'
 

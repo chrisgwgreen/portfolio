@@ -1,36 +1,29 @@
-import { useState, useContext, useEffect } from 'react'
-import { styled } from '@mui/system'
-import { Typography } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import { Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import {
+  AnimatedTitle,
+  Drawer,
   Eyes,
   Logo,
-  Drawer,
+  ShowTile,
   SplitSlice,
-  AnimatedTitle,
-  BrowserImgFrame,
-  Reflection
+  SwipeList
 } from 'components'
 import { DataContext } from 'contexts'
-
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { useContext, useState } from 'react'
 
 const MenuWrapper = styled('button')`
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  border: 0.25rem solid black;
   background: #fff;
-  margin: 0.5rem;
+  padding: 1rem;
   cursor: pointer;
-  border-radius: 0.2rem;
   display: flex;
   flex-direction: column;
-`
-
-const StyledSwiper = styled(Swiper)`
-  margin: 2rem 0 3rem 0;
-  overflow: visible;
+  box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
 `
 
 const ContentWrapper = styled('div')`
@@ -71,17 +64,19 @@ export const App = () => {
               const items = menu[key]
 
               const menuItems = items.map((item: any) => (
-                <button onClick={() => handleSelectedProject(item)}>
-                  {item.title}
-                </button>
+                <ShowTile
+                  title='Test'
+                  img={{
+                    src: ''
+                  }}
+                  onClick={() => handleSelectedProject(item)}
+                />
+                // <button >
+                //   {item.title}
+                // </button>
               ))
 
-              return (
-                <>
-                  <Typography>{key}</Typography>
-                  {menuItems}
-                </>
-              )
+              return <SwipeList>{menuItems}</SwipeList>
             })}
         </>
       </Drawer>
@@ -105,25 +100,7 @@ export const App = () => {
               renderSecondary={() => {
                 const { media } = selectedProject
 
-                return (
-                  <>
-                    {media && (
-                      <Reflection>
-                        <BrowserImgFrame src={media[0]} />
-                      </Reflection>
-                    )}
-                  </>
-                  // <StyledSwiper
-                  // // navigation
-                  // // spaceBetween={50}
-                  // // pagination={{ clickable: true }}
-                  // >
-                  //   <SwiperSlide>TEST 1</SwiperSlide>
-                  //   <SwiperSlide>TEST 2</SwiperSlide>
-                  //   <SwiperSlide>TEST 2</SwiperSlide>
-                  //   <SwiperSlide>TEST 2</SwiperSlide>
-                  // </StyledSwiper>
-                )
+                return <>{media && <img src={media[0].src} />}</>
               }}
             />
           )}
