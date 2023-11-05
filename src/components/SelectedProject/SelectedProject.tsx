@@ -1,9 +1,9 @@
 import { css, styled } from '@mui/system'
-import { animated } from '@react-spring/web'
+import { animated, useSpring } from 'react-spring'
 import { Typography } from '@mui/material'
 import { AnimatedTitle } from 'components'
-import Gallery from 'react-photo-gallery'
-import { Project } from 'types'
+import Gallery, { PhotoProps } from 'react-photo-gallery'
+import { Project, Media } from 'types'
 import { useEffect, useState } from 'react'
 
 interface Props {
@@ -25,75 +25,42 @@ const Wrapper = styled(animated.div)(
   `
 )
 
+const PhotoGalleryWrapper = styled(animated.div)`
+  opacity: 0;
+`
+
 export const SelectedProject = (props: Props) => {
   const {
     selectedProject: { title, copy, media }
   } = props
 
-  const [imageSize, setImageSize] = useState<any[]>([])
+  const [photos, setPhotos] = useState<PhotoProps[]>([])
+
+  const styles = useSpring({
+    opacity: photos.length > 0 ? 1 : 0
+  })
 
   useEffect(() => {
-    // TODO return promise and response to "all"...
-    // CONTINUE HERE...
-    // Promise.all([loadImage(images.menu), loadImage(images.map)]).then()
-    // {
-    //   console.log('menu:', images.menu.status)
-    //   console.log('map :', images.map.status)
-    // }
+    const loadImage = async (image: Media) => {
+      return new Promise((resolve, reject) => {
+        var img = new Image()
 
-    media.forEach(m => {
-      var img = new Image()
+        img.onload = function () {
+          resolve({
+            src: img.src,
+            width: img.width,
+            height: img.height
+          })
+        }
 
-      img.onload = function () {
-        setImageSize(prev => {
-          return [
-            ...prev,
-            {
-              src: m.src,
-              width: img.width,
-              height: img.height
-            }
-          ]
-        })
-      }
-      img.src = m.src
+        img.src = image.src
+      })
+    }
+
+    Promise.all(media.map(m => loadImage(m))).then(photos => {
+      setPhotos(photos as PhotoProps[])
     })
   }, [media])
-
-  // useEffect(() => {
-  //   const aspectRatio = (height: number, width: number) => {
-  //     if (height > width) {
-  //       return { width: 1, height: height / width }
-  //     } else {
-  //       return { height: 1, width: width / height }
-  //     }
-  //   }
-
-  //   let photosForGallery = (imgArr: any) => {
-  //     imgArr.forEach((img: any) => {
-  //       const mockImage = document.createElement('img')
-  //       const src = img.src
-
-  //       mockImage.onload = () => {
-  //         let aspect = aspectRatio(mockImage.height, mockImage.width)
-
-  //         console.log('ONLOAD', src, aspect.width, aspect.height)
-
-  //         images.current.push({
-  //           src: mockImage.src,
-  //           width: aspect.width,
-  //           height: aspect.height
-  //         })
-  //       }
-
-  //       mockImage.src = src
-  //     })
-  //   }
-
-  //   if (media.length > 0) {
-  //     photosForGallery(media)
-  //   }
-  // }, [media])
 
   return (
     <Wrapper>
@@ -101,7 +68,9 @@ export const SelectedProject = (props: Props) => {
         <AnimatedTitle title={title} />
         <Typography variant='body2'>{copy}</Typography>
       </div>
-      {imageSize && <Gallery photos={imageSize} />}
+      <PhotoGalleryWrapper style={styles}>
+        {photos && <Gallery photos={photos} />}
+      </PhotoGalleryWrapper>
     </Wrapper>
   )
 }
