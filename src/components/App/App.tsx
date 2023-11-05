@@ -1,14 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu'
 import { styled } from '@mui/system'
-import {
-  AnimatedTitle,
-  Drawer,
-  Eyes,
-  Logo,
-  ShowTile,
-  SwipeList,
-  SelectedProject
-} from 'components'
+import { Drawer, Eyes, Logo, SelectedProject, ProjectList } from 'components'
 import { DataContext } from 'contexts'
 import { useContext, useState } from 'react'
 
@@ -62,32 +54,20 @@ export const App = () => {
       </MenuWrapper>
       <Drawer show={isMenuOpen} onClose={handleCloseMenu}>
         <SwipeListWrapper>
-          {menu &&
-            Object.keys(menu).map((key: any) => {
-              const items = menu[key]
-
-              const menuItems = items.map((item: any) => (
-                <>
-                  <ShowTile
-                    title={item.title}
-                    img={{
-                      src:
-                        item.media && item.media.length > 0
-                          ? item.media[0].src
-                          : ''
-                    }}
-                    onClick={() => handleSelectedProject(item)}
-                  />
-                </>
-              ))
-
-              return (
-                <div>
-                  <AnimatedTitle isSmall title={key} />
-                  <SwipeList>{menuItems}</SwipeList>
-                </div>
-              )
-            })}
+          {menu && (
+            <ProjectList
+              title='Web'
+              items={menu['web']}
+              handleSelectedProject={handleSelectedProject}
+            />
+          )}
+          {menu && (
+            <ProjectList
+              title='Hardware'
+              items={menu['hardware']}
+              handleSelectedProject={handleSelectedProject}
+            />
+          )}
         </SwipeListWrapper>
       </Drawer>
       <Drawer show={selectedProject !== null} onClose={handleCloseContent}>
