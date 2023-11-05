@@ -48,9 +48,9 @@ export interface rgb {
 
 export interface Image {
   src: string
-  width: number
-  height: number
-  fileName: string
+  width?: number
+  height?: number
+  fileName?: string
   title?: string
   alt?: string
 }
@@ -66,6 +66,8 @@ export type MediaType = 'web' | 'image'
 export interface Media {
   type: MediaType
   src: string
+  width?: number
+  height?: number
 }
 
 export type ProjectType = 'web' | 'hardware'

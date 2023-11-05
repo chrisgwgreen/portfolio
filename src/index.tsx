@@ -15,13 +15,13 @@ const root = ReactDOM.createRoot(element!)
 
 const Root = () => {
   return (
-    <StrictMode>
-      <DataProvider>
-        <ThemeProvider theme={muiTheme}>
-          <App />
-        </ThemeProvider>
-      </DataProvider>
-    </StrictMode>
+    // <StrictMode>
+    <DataProvider>
+      <ThemeProvider theme={muiTheme}>
+        <App />
+      </ThemeProvider>
+    </DataProvider>
+    // </StrictMode>
   )
 }
 

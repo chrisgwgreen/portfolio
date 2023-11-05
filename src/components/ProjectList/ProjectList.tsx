@@ -10,17 +10,19 @@ interface Props {
 export const ProjectList = (props: Props) => {
   const { title, items, handleSelectedProject } = props
 
-  const menuItems = items.map((item: Project) => (
-    <>
-      <ShowTile
-        title={item.title}
-        img={{
-          src: item.media && item.media.length > 0 ? item.media[0].src : ''
-        }}
-        onClick={() => handleSelectedProject(item)}
-      />
-    </>
-  ))
+  const menuItems =
+    items &&
+    items.map((item: Project) => (
+      <>
+        <ShowTile
+          title={item.title}
+          img={{
+            src: item.media && item.media.length > 0 ? item.media[0].src : ''
+          }}
+          onClick={() => handleSelectedProject(item)}
+        />
+      </>
+    ))
 
   return (
     <div>
