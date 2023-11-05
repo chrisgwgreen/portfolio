@@ -1,5 +1,4 @@
 import MenuIcon from '@mui/icons-material/Menu'
-import { Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import {
   AnimatedTitle,
@@ -7,27 +6,31 @@ import {
   Eyes,
   Logo,
   ShowTile,
-  SplitSlice,
-  SwipeList
+  SwipeList,
+  SelectedProject
 } from 'components'
 import { DataContext } from 'contexts'
 import { useContext, useState } from 'react'
 
 const MenuWrapper = styled('button')`
-  position: fixed;
+  position: absolute;
   top: 1rem;
   right: 1rem;
-  border: 0.25rem solid black;
+  border: 0.25rem solid #333333;
   background: #fff;
   padding: 1rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  z-index: 2;
 `
 
-const ContentWrapper = styled('div')`
-  // overflow: scroll;
+const SwipeListWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 `
 
 export const App = () => {
@@ -58,53 +61,80 @@ export const App = () => {
         <MenuIcon fontSize='medium' />
       </MenuWrapper>
       <Drawer show={isMenuOpen} onClose={handleCloseMenu}>
-        <>
+        <SwipeListWrapper>
           {menu &&
             Object.keys(menu).map((key: any) => {
               const items = menu[key]
 
               const menuItems = items.map((item: any) => (
-                <ShowTile
-                  title='Test'
-                  img={{
-                    src: ''
-                  }}
-                  onClick={() => handleSelectedProject(item)}
-                />
-                // <button >
-                //   {item.title}
-                // </button>
+                <>
+                  <ShowTile
+                    title={item.title}
+                    img={{
+                      src:
+                        item.media && item.media.length > 0
+                          ? item.media[0].src
+                          : ''
+                    }}
+                    onClick={() => handleSelectedProject(item)}
+                  />
+                </>
               ))
 
-              return <SwipeList>{menuItems}</SwipeList>
+              return (
+                <div>
+                  <AnimatedTitle isSmall title={key} />
+                  <SwipeList>{menuItems}</SwipeList>
+                </div>
+              )
             })}
-        </>
+        </SwipeListWrapper>
       </Drawer>
       <Drawer show={selectedProject !== null} onClose={handleCloseContent}>
-        <ContentWrapper>
+        <>
           {selectedProject && (
+            <SelectedProject selectedProject={selectedProject} />
+          )}
+        </>
+
+        {/* <ContentWrapper>
+          {selectedProject && {
+
+            
+          })
+
+
+            <div>
+
+<div>
+                    <AnimatedTitle isRightAligned title={title} />
+                    <Typography align='right' variant='body2'>
+                      {copy}
+                    </Typography>
+                  </div>
+
+                  <div>{media && <img src={media[0].src} />}</div>
+
+
+            </div>
+
             <SplitSlice
               isSecondaryOnTopResponsive={true}
               renderPrimary={() => {
                 const { title, copy, media } = selectedProject
 
                 return (
-                  <>
-                    <AnimatedTitle isRightAligned title={title} />
-                    <Typography align='right' variant='body2'>
-                      {copy}
-                    </Typography>
-                  </>
+                  
                 )
               }}
               renderSecondary={() => {
                 const { media } = selectedProject
 
-                return <>{media && <img src={media[0].src} />}</>
+                return <div>{media && <img src={media[0].src} />}</div>
               }}
             />
           )}
-        </ContentWrapper>
+        </ContentWrapper> */}
       </Drawer>
     </>
   )

@@ -10,7 +10,7 @@ interface Props {
   title: string
 }
 
-export const Wrapper = styled('span')<{ isRightAligned: boolean }>(
+export const Wrapper = styled('div')<{ isRightAligned: boolean }>(
   ({ isRightAligned }) => css`
     position: relative;
     display: flex;
@@ -23,7 +23,7 @@ export const Wrapper = styled('span')<{ isRightAligned: boolean }>(
   `
 )
 
-const AnimatedText = styled(animated.span, {
+const AnimatedText = styled(animated.div, {
   shouldForwardProp: prop => prop !== 'isSmall'
 })<{ isSmall?: boolean }>(
   ({
@@ -35,7 +35,7 @@ const AnimatedText = styled(animated.span, {
     position: relative;
     width: 100%;
     line-height: ${isSmall ? '2rem' : '3rem'};
-    color: black;
+    color: #333333;
     font-size: ${isSmall ? '2rem' : '3rem'};
     font-weight: 800;
     letter-spacing: 0;
@@ -43,11 +43,6 @@ const AnimatedText = styled(animated.span, {
     color: ${primary.main};
   `
 )
-
-const TitleWrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-`
 
 export const Underline = styled('div')<{
   isRightAligned: boolean
@@ -87,14 +82,14 @@ const AnimatedTitleWrapper: React.FC<{
   })
 
   return (
-    <TitleWrapper>
+    <div>
       {trail.map(({ height, ...style }, index) => (
         <AnimatedText key={index} style={style} isSmall={isSmall}>
           <animated.div style={{ height }}>{items[index]}</animated.div>
         </AnimatedText>
       ))}
       <Underline isRightAligned={isRightAligned} isSmall={isSmall} />
-    </TitleWrapper>
+    </div>
   )
 }
 

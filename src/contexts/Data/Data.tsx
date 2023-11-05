@@ -1,10 +1,10 @@
 import { createContext, useState, useCallback, useEffect } from 'react'
 import { initializeApp } from 'firebase/app'
-
 import { getFirestore, getDocs, collection, query } from 'firebase/firestore'
+import { Project } from 'types'
 
 interface DataContextProps {
-  projects: any
+  projects: Project[]
 }
 
 interface Props {

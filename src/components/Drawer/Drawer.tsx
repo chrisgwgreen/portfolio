@@ -19,8 +19,8 @@ const Wrapper = styled(animated.div)`
   z-index: 2;
   opacity: 0;
   padding: 2rem;
-  overflow-y: scroll;
   overflow-x: hidden;
+  overflow-y: scroll;
 `
 
 const CloseWrapper = styled('button')`
@@ -45,11 +45,13 @@ export const Drawer = (props: Props) => {
   })
 
   return (
-    <Wrapper style={styles}>
-      <CloseWrapper onClick={onClose}>
-        <CloseIcon fontSize='medium' />
-      </CloseWrapper>
-      {children}
-    </Wrapper>
+    <>
+      <Wrapper style={styles}>
+        <CloseWrapper onClick={onClose}>
+          <CloseIcon fontSize='medium' />
+        </CloseWrapper>
+        {children}
+      </Wrapper>
+    </>
   )
 }

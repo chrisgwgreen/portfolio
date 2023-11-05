@@ -1,10 +1,3 @@
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  Typography
-} from '@mui/material'
 import { css, styled } from '@mui/system'
 import { animated, useSpring } from '@react-spring/web'
 import { LazyImage } from 'components'
@@ -30,22 +23,23 @@ const Wrapper = styled(animated.div)(
     overflow: hidden;
     cursor: pointer;
     min-width: 300px;
-    margin: 10px;
+    margin: 0 1rem;
   `
 )
 
-const StyledTypography = styled(Typography)`
+const TitleWrapper = styled('span')`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 100%;
+  background: #333333;
+  color: #fff;
+  padding: 0.4rem;
+  display: block;
 `
 
 const CardImageWrapper = styled('div')`
   position: relative;
-`
-
-const StyledButton = styled(Button)`
-  width: 100%;
 `
 
 export const ShowTile = (props: Props) => {
@@ -68,51 +62,17 @@ export const ShowTile = (props: Props) => {
     transform: `scale(${hovering ? 1.02 : 1})`
   })
 
-  const handleMoreInfoClick = () => {}
-  const handleBookTicketsClick = () => {}
-
   return (
-    <>
-      <Wrapper
-        style={styles}
-        onMouseEnter={() => set(updateHover(true))}
-        onMouseLeave={() => set(updateHover(false))}
-      >
-        <CardActionArea onClick={onClick && onClick}>
-          <CardImageWrapper>
-            {alt && src && <LazyImage alt={alt} src={src} />}
-          </CardImageWrapper>
-          <CardContent>
-            <StyledTypography gutterBottom variant='body1'>
-              {title}
-            </StyledTypography>
-            {subtitle && (
-              <Typography variant='body2' color='text.secondary'>
-                {subtitle}
-              </Typography>
-            )}
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <StyledButton
-            size='small'
-            variant='contained'
-            color='secondary'
-            disableElevation={true}
-            onClick={handleMoreInfoClick}
-          >
-            Button 1
-          </StyledButton>
-          <StyledButton
-            size='small'
-            variant='contained'
-            disableElevation={true}
-            onClick={handleBookTicketsClick}
-          >
-            Button 2
-          </StyledButton>
-        </CardActions>
-      </Wrapper>
-    </>
+    <Wrapper
+      style={styles}
+      onMouseEnter={() => set(updateHover(true))}
+      onMouseLeave={() => set(updateHover(false))}
+      onClick={onClick && onClick}
+    >
+      {/* <CardImageWrapper> */}
+      {src && <LazyImage alt={alt} src={src} />}
+      {/* </CardImageWrapper> */}
+      <TitleWrapper>{title}</TitleWrapper>
+    </Wrapper>
   )
 }

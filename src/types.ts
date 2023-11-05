@@ -60,3 +60,19 @@ export interface HTMLImage {
   src: string
   alt?: string
 }
+
+export type MediaType = 'web' | 'image'
+
+export interface Media {
+  type: MediaType
+  src: string
+}
+
+export type ProjectType = 'web' | 'hardware'
+
+export interface Project {
+  type: ProjectType
+  title: string
+  copy: string
+  media: Media[]
+}
