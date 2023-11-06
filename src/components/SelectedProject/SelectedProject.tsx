@@ -13,7 +13,6 @@ interface Props {
 const Wrapper = styled(animated.div)`
   max-width: 31.25rem;
   margin: 0 auto;
-  height: 100%;
   display: flex;
   flex-direction: column;
 `
@@ -27,7 +26,7 @@ const PhotoGalleryWrapper = styled(animated.div)`
 `
 
 const ContentWrapper = styled('div')`
-  margin-bottom: 0.5rem;
+  margin: 0.5rem;
 `
 
 const StyledLink = styled('a')`
@@ -35,6 +34,10 @@ const StyledLink = styled('a')`
   color: #fff;
   padding: 1rem;
   margin: 1rem 0.5rem;
+`
+
+const StyledCopy = styled(Typography)`
+  margin: 1rem 0;
 `
 
 export const SelectedProject = (props: Props) => {
@@ -74,9 +77,10 @@ export const SelectedProject = (props: Props) => {
     <Wrapper>
       <ContentWrapper>
         <AnimatedTitle title={title} />
-        <Typography variant='body2'>{copy}</Typography>
+        <StyledCopy variant='body2'>{copy}</StyledCopy>
       </ContentWrapper>
       <PhotoGalleryWrapper style={styles}>
+        {!photos && <>LOADING</>}
         {photos && <Gallery photos={photos} margin={10} />}
       </PhotoGalleryWrapper>
       {link && (
