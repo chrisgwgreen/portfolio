@@ -9,6 +9,7 @@ const MenuWrapper = styled('button')`
   top: 1rem;
   right: 1rem;
   border: 0.25rem solid #333333;
+  color: #333333;
   background: #fff;
   padding: 1rem;
   cursor: pointer;
