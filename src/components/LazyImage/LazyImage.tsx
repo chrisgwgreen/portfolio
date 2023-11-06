@@ -1,7 +1,6 @@
-import { useState } from 'react'
-// import { useSpring, useSpringRef } from '@react-spring/web'
 import { Skeleton } from '@mui/material'
 import { css, styled } from '@mui/system'
+import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { HTMLImage } from 'types'
 

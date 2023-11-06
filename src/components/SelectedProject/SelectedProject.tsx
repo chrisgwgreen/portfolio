@@ -1,37 +1,45 @@
-import { css, styled } from '@mui/system'
-import { animated, useSpring } from 'react-spring'
 import { Typography } from '@mui/material'
+import { styled } from '@mui/system'
 import { AnimatedTitle } from 'components'
-import Gallery, { PhotoProps } from 'react-photo-gallery'
-import { Project, Media } from 'types'
 import { useEffect, useState } from 'react'
+import Gallery, { PhotoProps } from 'react-photo-gallery'
+import { animated, useSpring } from 'react-spring'
+import { Media, Project } from 'types'
 
 interface Props {
   selectedProject: Project
 }
 
-const Wrapper = styled(animated.div)(
-  ({
-    theme: {
-      palette: { tertiary }
-    }
-  }) => css`
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    justify-content: space-evenly;
-    height: 100%;
-  `
-)
+const Wrapper = styled(animated.div)`
+  max-width: 31.25rem;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`
 
 const PhotoGalleryWrapper = styled(animated.div)`
   opacity: 0;
+
+  img {
+    box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  }
+`
+
+const ContentWrapper = styled('div')`
+  margin-bottom: 0.5rem;
+`
+
+const StyledLink = styled('a')`
+  background: #333333;
+  color: #fff;
+  padding: 1rem;
+  margin: 1rem 0.5rem;
 `
 
 export const SelectedProject = (props: Props) => {
   const {
-    selectedProject: { title, copy, media }
+    selectedProject: { title, copy, media, link }
   } = props
 
   const [photos, setPhotos] = useState<PhotoProps[]>([])
@@ -57,20 +65,25 @@ export const SelectedProject = (props: Props) => {
       })
     }
 
-    Promise.all(media.map(m => loadImage(m))).then(photos => {
+    Promise.all(media.map(image => loadImage(image))).then(photos => {
       setPhotos(photos as PhotoProps[])
     })
   }, [media])
 
   return (
     <Wrapper>
-      <div>
+      <ContentWrapper>
         <AnimatedTitle title={title} />
         <Typography variant='body2'>{copy}</Typography>
-      </div>
+      </ContentWrapper>
       <PhotoGalleryWrapper style={styles}>
-        {photos && <Gallery photos={photos} />}
+        {photos && <Gallery photos={photos} margin={10} />}
       </PhotoGalleryWrapper>
+      {link && (
+        <StyledLink href={link} target='_blank' rel='noreferrer'>
+          LINK
+        </StyledLink>
+      )}
     </Wrapper>
   )
 }

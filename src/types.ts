@@ -55,7 +55,6 @@ export interface Image {
   alt?: string
 }
 
-// TODO OMIT...
 export interface HTMLImage {
   src: string
   alt?: string
@@ -77,4 +76,5 @@ export interface Project {
   title: string
   copy: string
   media: Media[]
+  link?: string
 }

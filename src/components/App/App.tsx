@@ -1,6 +1,6 @@
 import MenuIcon from '@mui/icons-material/Menu'
 import { styled } from '@mui/system'
-import { Drawer, Eyes, Logo, SelectedProject, ProjectList } from 'components'
+import { Drawer, Eyes, Logo, ProjectList, SelectedProject } from 'components'
 import { DataContext } from 'contexts'
 import { useContext, useState } from 'react'
 
@@ -71,50 +71,9 @@ export const App = () => {
         </SwipeListWrapper>
       </Drawer>
       <Drawer show={selectedProject !== null} onClose={handleCloseContent}>
-        <>
-          {selectedProject && (
-            <SelectedProject selectedProject={selectedProject} />
-          )}
-        </>
-
-        {/* <ContentWrapper>
-          {selectedProject && {
-
-            
-          })
-
-
-            <div>
-
-<div>
-                    <AnimatedTitle isRightAligned title={title} />
-                    <Typography align='right' variant='body2'>
-                      {copy}
-                    </Typography>
-                  </div>
-
-                  <div>{media && <img src={media[0].src} />}</div>
-
-
-            </div>
-
-            <SplitSlice
-              isSecondaryOnTopResponsive={true}
-              renderPrimary={() => {
-                const { title, copy, media } = selectedProject
-
-                return (
-                  
-                )
-              }}
-              renderSecondary={() => {
-                const { media } = selectedProject
-
-                return <div>{media && <img src={media[0].src} />}</div>
-              }}
-            />
-          )}
-        </ContentWrapper> */}
+        {selectedProject && (
+          <SelectedProject selectedProject={selectedProject} />
+        )}
       </Drawer>
     </>
   )

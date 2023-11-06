@@ -38,14 +38,9 @@ const TitleWrapper = styled('span')`
   display: block;
 `
 
-const CardImageWrapper = styled('div')`
-  position: relative;
-`
-
-export const ShowTile = (props: Props) => {
+export const ProjectTile = (props: Props) => {
   const {
     title,
-    subtitle,
     onClick,
     img: { src, alt }
   } = props
@@ -69,9 +64,7 @@ export const ShowTile = (props: Props) => {
       onMouseLeave={() => set(updateHover(false))}
       onClick={onClick && onClick}
     >
-      {/* <CardImageWrapper> */}
       {src && <LazyImage alt={alt} src={src} />}
-      {/* </CardImageWrapper> */}
       <TitleWrapper>{title}</TitleWrapper>
     </Wrapper>
   )

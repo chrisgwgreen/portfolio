@@ -1,6 +1,6 @@
 import { styled } from '@mui/system'
-import { media } from 'utils'
 import { ReactComponent as GWGLogo } from 'assets/gwg.svg'
+import { media } from 'utils'
 
 const LogoWrapper = styled(GWGLogo)`
   position: absolute;
@@ -12,7 +12,6 @@ const LogoWrapper = styled(GWGLogo)`
   margin-left: -150px;
   margin-top: -150px;
   pointer-events: none;
-  // opacity: 0;
   filter: drop-shadow(0 0.5rem 0.5rem rgb(0 0 0 / 0.4));
 
   ${media.tablet} {

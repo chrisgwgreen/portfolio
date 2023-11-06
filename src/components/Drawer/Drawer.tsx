@@ -25,14 +25,15 @@ const Wrapper = styled(animated.div)`
 
 const CloseWrapper = styled('button')`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1rem;
+  right: 1rem;
   border: none;
   background: #fff;
-  margin: 0.5rem;
+  margin: 1rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  z-index: 3;
 `
 
 export const Drawer = (props: Props) => {

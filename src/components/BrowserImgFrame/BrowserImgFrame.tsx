@@ -1,4 +1,4 @@
-import { styled, css } from '@mui/system'
+import { css, styled } from '@mui/system'
 
 interface Props {
   src: string

@@ -1,4 +1,4 @@
-import { AnimatedTitle, ShowTile, SwipeList } from 'components'
+import { AnimatedTitle, ProjectTile, SwipeList } from 'components'
 import { Project } from 'types'
 
 interface Props {
@@ -13,19 +13,18 @@ export const ProjectList = (props: Props) => {
   const menuItems =
     items &&
     items.map((item: Project) => (
-      <>
-        <ShowTile
-          title={item.title}
-          img={{
-            src: item.media && item.media.length > 0 ? item.media[0].src : ''
-          }}
-          onClick={() => handleSelectedProject(item)}
-        />
-      </>
+      <ProjectTile
+        key={`project-list-tile-${item.title}`}
+        title={item.title}
+        img={{
+          src: item.media && item.media.length > 0 ? item.media[0].src : ''
+        }}
+        onClick={() => handleSelectedProject(item)}
+      />
     ))
 
   return (
-    <div>
+    <div key={`project-list-${title}`}>
       <AnimatedTitle isSmall title={title} />
       <SwipeList>{menuItems}</SwipeList>
     </div>

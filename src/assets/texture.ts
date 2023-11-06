@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { lighterCol, hexToRgb } from 'utils/color'
+import { hexToRgb, lighterCol } from 'utils/color'
 
 export const getTexture = (color: string) => {
   const width = 2048
