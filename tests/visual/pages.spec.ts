@@ -46,3 +46,23 @@ test('not found', async ({ page }) => {
   await settle(page)
   await expect(page).toHaveScreenshot('not-found.png')
 })
+
+// Blocking project images keeps the gallery spinner and tile skeletons on screen
+const blockImages = (page: Page) =>
+  page.route('https://firebasestorage.googleapis.com/**', route => route.abort())
+
+test('project loading', async ({ page }) => {
+  await blockImages(page)
+  await page.goto('/projects/alexa-lamp')
+  await settle(page)
+  await expect(page).toHaveScreenshot('project-loading.png')
+})
+
+test('menu loading', async ({ page }) => {
+  await blockImages(page)
+  await page.goto('/')
+  await settle(page)
+  await page.locator('button').first().click()
+  await settle(page)
+  await expect(page).toHaveScreenshot('menu-loading.png')
+})
