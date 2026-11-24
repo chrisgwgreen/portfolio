@@ -1,8 +1,7 @@
 'use client'
 
-import { CircularProgress, Typography } from '@mui/material'
-import { styled } from '@mui/system'
 import { AnimatedTitle } from 'components/AnimatedTitle/AnimatedTitle'
+import { Spinner } from 'components/Spinner/Spinner'
 import { useEffect, useState } from 'react'
 import Gallery, { PhotoProps } from 'react-photo-gallery'
 import { animated, useSpring } from '@react-spring/web'
@@ -12,11 +11,6 @@ import styles from './SelectedProject.module.css'
 interface Props {
   selectedProject: Project
 }
-
-// Stays on MUI's styled until Typography itself is replaced
-const StyledCopy = styled(Typography)`
-  margin: 1rem 0;
-`
 
 export const SelectedProject = (props: Props) => {
   const {
@@ -55,11 +49,11 @@ export const SelectedProject = (props: Props) => {
     <div className={styles.project}>
       <div className={styles.content}>
         <AnimatedTitle title={title} />
-        <StyledCopy variant='body2'>{copy}</StyledCopy>
+        <p className={styles.copy}>{copy}</p>
       </div>
       {!photos && (
         <div className={styles.loading}>
-          <CircularProgress />
+          <Spinner />
         </div>
       )}
       <animated.div className={styles.gallery} style={spring}>

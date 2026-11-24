@@ -1,20 +1,11 @@
 'use client'
 
-import { Skeleton } from '@mui/material'
-import { styled } from '@mui/system'
+import { Skeleton } from 'components/Skeleton/Skeleton'
 import { cx } from 'lib/cx'
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { HTMLImage } from 'types'
 import styles from './LazyImage.module.css'
-
-// Stays on MUI's styled until Skeleton itself is replaced
-const StyledSkeleton = styled(Skeleton)`
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-`
 
 export const LazyImage = (props: HTMLImage) => {
   const { src, alt } = props
@@ -48,7 +39,7 @@ export const LazyImage = (props: HTMLImage) => {
 
   return (
     <div className={styles.lazyImage}>
-      <StyledSkeleton variant='rectangular' animation='wave' />
+      <Skeleton className={styles.skeleton} />
       <div className={cx(styles.frame, isVisible && styles.visible)}>
         <LazyLoadImage
           className={styles.image}

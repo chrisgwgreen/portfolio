@@ -27,8 +27,7 @@ test('home', async ({ page }) => {
 test('menu open', async ({ page }) => {
   await page.goto('/')
   await settle(page)
-  // The menu button is the first button on the page
-  await page.locator('button').first().click()
+  await page.getByRole('button', { name: 'Menu' }).click()
   await settle(page)
   await expect(page).toHaveScreenshot('menu.png')
 })
@@ -62,7 +61,7 @@ test('menu loading', async ({ page }) => {
   await blockImages(page)
   await page.goto('/')
   await settle(page)
-  await page.locator('button').first().click()
+  await page.getByRole('button', { name: 'Menu' }).click()
   await settle(page)
   await expect(page).toHaveScreenshot('menu-loading.png')
 })

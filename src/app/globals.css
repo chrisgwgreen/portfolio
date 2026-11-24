@@ -7,6 +7,8 @@
   --color-surface: #fff;
   --shadow-raised: 0.2rem 1rem 1rem rgb(0 0 0 / 0.1);
   --font-body: 'Bebas Neue', 'Fira Sans', sans-serif;
+  /* Body copy; Roboto is not loaded, so Helvetica or Arial is what renders */
+  --font-copy: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
 @layer reset {

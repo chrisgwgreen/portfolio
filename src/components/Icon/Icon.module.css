@@ -1,0 +1,9 @@
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  fill: currentColor;
+  user-select: none;
+}

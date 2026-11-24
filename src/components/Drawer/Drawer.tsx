@@ -1,19 +1,20 @@
 'use client'
 
-import CloseIcon from '@mui/icons-material/Close'
 import { animated, useSpring } from '@react-spring/web'
+import { Icon } from 'components/Icon/Icon'
 import { useWindowSize } from 'hooks'
 import { ReactNode } from 'react'
 import styles from './Drawer.module.css'
 
 interface Props {
+  id?: string
   show: boolean
   onClose: () => void
   children: ReactNode
 }
 
 export const Drawer = (props: Props) => {
-  const { show, onClose, children } = props
+  const { id, show, onClose, children } = props
   const { windowWidth } = useWindowSize()
 
   const spring = useSpring({
@@ -23,9 +24,13 @@ export const Drawer = (props: Props) => {
 
   return (
     <>
-      <animated.div className={styles.drawer} style={spring}>
-        <button className={styles.close} onClick={onClose}>
-          <CloseIcon fontSize='medium' />
+      <animated.div id={id} className={styles.drawer} style={spring}>
+        <button
+          className={styles.close}
+          aria-label='Close'
+          onClick={onClose}
+        >
+          <Icon name='close' />
         </button>
         {children}
       </animated.div>

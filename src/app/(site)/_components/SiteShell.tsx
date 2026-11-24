@@ -1,19 +1,20 @@
 'use client'
 
-import MenuIcon from '@mui/icons-material/Menu'
 import { Drawer } from 'components/Drawer/Drawer'
+import { Icon } from 'components/Icon/Icon'
 import { Logo } from 'components/Logo/Logo'
 import { Eyes } from 'features/eyes/Eyes'
 import { DataContext } from 'features/projects/DataContext'
 import { ProjectList } from 'features/projects/ProjectList'
 import { SelectedProject } from 'features/projects/SelectedProject'
 import { usePathname, useRouter } from 'next/navigation'
-import { useContext, useState } from 'react'
+import { useContext, useId, useState } from 'react'
 import { Project } from 'types'
 import styles from './SiteShell.module.css'
 
 export const SiteShell = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuId = useId()
 
   const { projects } = useContext(DataContext)
   const router = useRouter()
@@ -46,11 +47,14 @@ export const SiteShell = () => {
       <Logo />
       <button
         className={styles.menuButton}
+        aria-label='Menu'
+        aria-expanded={isMenuOpen}
+        aria-controls={menuId}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
       >
-        <MenuIcon fontSize='medium' />
+        <Icon name='menu' />
       </button>
-      <Drawer show={isMenuOpen} onClose={handleCloseMenu}>
+      <Drawer id={menuId} show={isMenuOpen} onClose={handleCloseMenu}>
         <div className={styles.menu}>
           {menu && (
             <ProjectList

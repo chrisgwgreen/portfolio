@@ -1,0 +1,105 @@
+@property --arc-start {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@property --arc-end {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.spinner:indeterminate {
+  --_from: calc(90deg + var(--arc-start, 0deg));
+  --_to: calc(90deg + var(--arc-end, 158deg));
+  --size: 40px;
+  --thickness: 3.3px;
+  --spinner-color: var(--color-primary);
+  --track-color: transparent;
+  /* Resting arc, so it stays visible if the dash animation isn't running */
+  --arc-end: 158deg;
+
+  position: relative;
+  /* Inline, like the MUI spinner it replaces, so the space below it is unchanged */
+  display: inline-block;
+  vertical-align: baseline;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  appearance: none;
+  background: conic-gradient(
+      from var(--_from),
+      var(--spinner-color) calc(var(--_to) - var(--_from)),
+      transparent 0
+    )
+    var(--track-color);
+  /* The dash grows and shrinks the arc; @property above lets it interpolate */
+  animation:
+    spinner-spin 1.4s linear infinite,
+    spinner-dash 1.4s ease-in-out infinite;
+
+  /* Hollow the disc into a ring */
+  @supports (background-clip: border-area) {
+    background-clip: border-area;
+    background-origin: border-box;
+    border: var(--thickness) solid transparent;
+  }
+
+  @supports not (background-clip: border-area) {
+    border: 0;
+    mask-image: radial-gradient(
+      farthest-side,
+      transparent calc(100% - var(--thickness)),
+      black calc(100% - var(--thickness))
+    );
+  }
+
+  /* Forced colours drop background gradients, so draw it in system colours */
+  @media (forced-colors: active) {
+    forced-color-adjust: none;
+    --spinner-color: CanvasText;
+  }
+
+  /* Keep it turning slowly so it still reads as busy, without the dash */
+  @media (prefers-reduced-motion: reduce) {
+    animation: spinner-spin 6s linear infinite;
+  }
+
+  /* Separate rules: a browser drops a whole selector list it can't fully parse */
+  &::-webkit-progress-bar {
+    display: none;
+    background: none;
+  }
+
+  &::-webkit-progress-value {
+    display: none;
+    background: none;
+  }
+
+  &::-moz-progress-bar {
+    display: none;
+    background: none;
+  }
+}
+
+@keyframes spinner-spin {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@keyframes spinner-dash {
+  from {
+    --arc-start: 0deg;
+    --arc-end: 3deg;
+  }
+  50% {
+    --arc-start: 100deg;
+    --arc-end: 358deg;
+  }
+  to {
+    --arc-start: 360deg;
+    --arc-end: 363deg;
+  }
+}

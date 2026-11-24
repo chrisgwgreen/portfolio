@@ -1,8 +1,6 @@
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter'
 import type { Metadata, Viewport } from 'next'
 import { ReactNode } from 'react'
 import { SITE_NAME } from 'utils'
-import { Providers } from './providers'
 
 import './globals.css'
 
@@ -41,11 +39,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
       />
     </head>
     <body>
-      <AppRouterCacheProvider>
-        <Providers>
-          <div id='root'>{children}</div>
-        </Providers>
-      </AppRouterCacheProvider>
+      <div id='root'>{children}</div>
     </body>
   </html>
 )
