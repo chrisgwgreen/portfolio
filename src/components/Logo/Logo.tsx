@@ -1,34 +1,8 @@
-'use client'
-
-import { styled } from '@mui/system'
 import gwgLogo from 'assets/gwg.svg'
-import { media } from 'utils'
+import styles from './Logo.module.css'
 
-const LogoWrapper = styled('img')`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1;
-  width: 300px;
-  height: 300px;
-  margin-left: -150px;
-  margin-top: -150px;
-  pointer-events: none;
-  filter: drop-shadow(0 0.5rem 0.5rem rgb(0 0 0 / 0.4));
-
-  ${media.tablet} {
-    width: 250px;
-    height: 250px;
-    margin-left: -125px;
-    margin-top: -125px;
-  }
-
-  ${media.mobile} {
-    width: 150px;
-    height: 150px;
-    margin-left: -75px;
-    margin-top: -75px;
-  }
-`
-
-export const Logo = () => <LogoWrapper src={gwgLogo.src} alt='GWGreen Ltd.' />
+export const Logo = () => (
+  // An SVG on a static export: next/image would serve it unoptimised anyway
+  // eslint-disable-next-line @next/next/no-img-element
+  <img className={styles.logo} src={gwgLogo.src} alt='GWGreen Ltd.' />
+)
