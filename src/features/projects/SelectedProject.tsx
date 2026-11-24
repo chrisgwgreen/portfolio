@@ -7,41 +7,13 @@ import { useEffect, useState } from 'react'
 import Gallery, { PhotoProps } from 'react-photo-gallery'
 import { animated, useSpring } from '@react-spring/web'
 import { Media, Project } from 'types'
+import styles from './SelectedProject.module.css'
 
 interface Props {
   selectedProject: Project
 }
 
-const Wrapper = styled(animated.div)`
-  max-width: 31.25rem;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-`
-
-const PhotoGalleryWrapper = styled(animated.div)`
-  opacity: 0;
-
-  img {
-    box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
-  }
-`
-
-const ContentWrapper = styled('div')`
-  margin: 0.5rem;
-`
-
-const LoadingWrapper = styled('div')`
-  margin: 0 auto;
-`
-
-const StyledLink = styled('a')`
-  background: #333333;
-  color: #fff;
-  padding: 1rem;
-  margin: 1rem 0.5rem;
-`
-
+// Stays on MUI's styled until Typography itself is replaced
 const StyledCopy = styled(Typography)`
   margin: 1rem 0;
 `
@@ -53,7 +25,7 @@ export const SelectedProject = (props: Props) => {
 
   const [photos, setPhotos] = useState<PhotoProps[] | null>(null)
 
-  const styles = useSpring({
+  const spring = useSpring({
     opacity: photos && photos.length > 0 ? 1 : 0
   })
 
@@ -80,17 +52,17 @@ export const SelectedProject = (props: Props) => {
   }, [media])
 
   return (
-    <Wrapper>
-      <ContentWrapper>
+    <div className={styles.project}>
+      <div className={styles.content}>
         <AnimatedTitle title={title} />
         <StyledCopy variant='body2'>{copy}</StyledCopy>
-      </ContentWrapper>
+      </div>
       {!photos && (
-        <LoadingWrapper>
+        <div className={styles.loading}>
           <CircularProgress />
-        </LoadingWrapper>
+        </div>
       )}
-      <PhotoGalleryWrapper style={styles}>
+      <animated.div className={styles.gallery} style={spring}>
         {/* React 19 ignores the library's defaultProps, so pass its defaults explicitly */}
         {photos && (
           <Gallery
@@ -100,12 +72,17 @@ export const SelectedProject = (props: Props) => {
             targetRowHeight={300}
           />
         )}
-      </PhotoGalleryWrapper>
+      </animated.div>
       {link && (
-        <StyledLink href={link} target='_blank' rel='noreferrer'>
+        <a
+          className={styles.link}
+          href={link}
+          target='_blank'
+          rel='noreferrer'
+        >
           LINK
-        </StyledLink>
+        </a>
       )}
-    </Wrapper>
+    </div>
   )
 }

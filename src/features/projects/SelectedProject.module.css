@@ -1,0 +1,29 @@
+.project {
+  max-width: 31.25rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin: 0.5rem;
+}
+
+.loading {
+  margin: 0 auto;
+}
+
+.gallery {
+  opacity: 0;
+
+  img {
+    box-shadow: var(--shadow-raised);
+  }
+}
+
+.link {
+  background: var(--color-ink);
+  color: var(--color-surface);
+  padding: 1rem;
+  margin: 1rem 0.5rem;
+}
