@@ -1,36 +1,17 @@
 'use client'
 
 import { Skeleton } from '@mui/material'
-import { css, styled } from '@mui/system'
+import { styled } from '@mui/system'
+import { cx } from 'lib/cx'
 import { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { HTMLImage } from 'types'
+import styles from './LazyImage.module.css'
 
-const Wrapper = styled('div')`
-  position: relative;
-  padding-top: 56.25%;
-`
-
+// Stays on MUI's styled until Skeleton itself is replaced
 const StyledSkeleton = styled(Skeleton)`
   position: absolute;
   top: 0;
-  width: 100%;
-  height: 100%;
-`
-
-const ImageWrapper = styled('div')<{ isVisible?: boolean }>(
-  ({ isVisible = true }) => css`
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transition: opacity 0.4s;
-    opacity: ${isVisible ? '1' : '0'};
-  `
-)
-
-const StyledLazyLoadImage = styled(LazyLoadImage)`
   width: 100%;
   height: 100%;
 `
@@ -66,16 +47,17 @@ export const LazyImage = (props: HTMLImage) => {
   }
 
   return (
-    <Wrapper>
+    <div className={styles.lazyImage}>
       <StyledSkeleton variant='rectangular' animation='wave' />
-      <ImageWrapper isVisible={isVisible}>
-        <StyledLazyLoadImage
+      <div className={cx(styles.frame, isVisible && styles.visible)}>
+        <LazyLoadImage
+          className={styles.image}
           alt={alt}
           src={src}
           effect='opacity'
           afterLoad={handleAfterLoad}
         />
-      </ImageWrapper>
-    </Wrapper>
+      </div>
+    </div>
   )
 }
