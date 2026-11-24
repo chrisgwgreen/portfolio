@@ -17,14 +17,15 @@
   }
 }
 
-.image {
-  width: 100%;
-  height: 100%;
-}
-
 .skeleton {
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Full width at its own aspect ratio, top-aligned; the frame clips any excess */
+.image {
+  width: 100%;
+  height: auto;
 }

@@ -1,8 +1,14 @@
 import gwgLogo from 'assets/gwg.svg'
+import Image from 'next/image'
 import styles from './Logo.module.css'
 
+// The logo is the largest thing above the fold, so it loads first rather than lazily
 export const Logo = () => (
-  // An SVG on a static export: next/image would serve it unoptimised anyway
-  // eslint-disable-next-line @next/next/no-img-element
-  <img className={styles.logo} src={gwgLogo.src} alt='GWGreen Ltd.' />
+  <Image
+    className={styles.logo}
+    src={gwgLogo}
+    alt='GWGreen Ltd.'
+    loading='eager'
+    fetchPriority='high'
+  />
 )
