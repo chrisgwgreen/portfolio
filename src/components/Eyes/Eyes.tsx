@@ -6,18 +6,35 @@ import * as THREE from 'three'
 import { EYE_SIZE } from 'utils'
 
 
+interface Point {
+  x: number
+  y: number
+}
+
 interface Eye {
   eyes: THREE.Mesh[]
+  // How quickly the pair darts towards its target, when wandering
   speed: number
+  // When (in ms) the pair next picks a new target, when wandering
   delay: number
+  target: Point
+  current: Point
 }
+
+interface Props {
+  // Eyes search around on their own, and only follow the pointer while it moves
+  wander?: boolean
+}
+
+// How long the eyes keep following the pointer after it stops, when wandering
+const POINTER_HOLD_MS = 1500
 
 const EyeWrapper = styled('div')`
   height: 100%;
   width: 100%;
 `
 
-export const Eyes = () => {
+export const Eyes = ({ wander = false }: Props) => {
   const eyeWrapper = useRef<HTMLDivElement>(null!)
   const { windowWidth } = useWindowSize()
 
@@ -77,6 +94,8 @@ export const Eyes = () => {
         eyePairs.push({
           speed: 0,
           delay: 0,
+          target: { x: width / 2, y: height / 2 },
+          current: { x: width / 2, y: height / 2 },
           eyes: [leftEye, rightEye]
         })
 
@@ -89,49 +108,101 @@ export const Eyes = () => {
       renderer.render(scene, camera)
     }
 
+    const pos = new THREE.Vector3()
+
+    const lookAt = (eyePair: Eye, x: number, y: number) => {
+      pos.setFromMatrixPosition(eyePair.eyes[0].matrixWorld)
+      pos.project(camera)
+      pos.x = pos.x * (width / 2) + width / 2
+      pos.y = -(pos.y * (height / 2)) + height / 2
+      pos.z = 0
+
+      eyePair.eyes[0].rotation.z = ((Math.PI * 0.5) / width) * (x - pos.x)
+      eyePair.eyes[0].rotation.x =
+        -Math.PI / 2 + ((Math.PI * 0.5) / height) * (y - pos.y)
+
+      eyePair.eyes[1].rotation.z = ((Math.PI * 0.5) / width) * (x - pos.x)
+      eyePair.eyes[1].rotation.x =
+        -Math.PI / 2 + ((Math.PI * 0.5) / height) * (y - pos.y)
+    }
+
     const handleAnimation = (x: number, y: number) => {
       requestAnimationFrame(() => {
-        let pos = new THREE.Vector3()
-
         for (let i = 0; i < eyePairs.length; i++) {
-          const eyePair = eyePairs[i]
-
-          pos = pos.setFromMatrixPosition(eyePair.eyes[0].matrixWorld)
-          pos.project(camera)
-          pos.x = pos.x * (width / 2) + width / 2
-          pos.y = -(pos.y * (height / 2)) + height / 2
-          pos.z = 0
-
-          eyePair.eyes[0].rotation.z = ((Math.PI * 0.5) / width) * (x - pos.x)
-          eyePair.eyes[0].rotation.x =
-            -Math.PI / 2 + ((Math.PI * 0.5) / height) * (y - pos.y)
-
-          eyePair.eyes[1].rotation.z = ((Math.PI * 0.5) / width) * (x - pos.x)
-          eyePair.eyes[1].rotation.x =
-            -Math.PI / 2 + ((Math.PI * 0.5) / height) * (y - pos.y)
+          lookAt(eyePairs[i], x, y)
         }
 
         renderScene()
       })
     }
 
+    // Constant motion is opt-out for visitors who ask their OS for less of it
+    const isWandering =
+      wander && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    let pointer: (Point & { time: number }) | null = null
+    let wanderFrame = 0
+
+    const handleWander = (now: number) => {
+      const isFollowing =
+        pointer !== null && now - pointer.time < POINTER_HOLD_MS
+
+      for (let i = 0; i < eyePairs.length; i++) {
+        const eyePair = eyePairs[i]
+
+        // Each pair searches its own spot, a little beyond the screen edges
+        if (!isFollowing && now > eyePair.delay) {
+          eyePair.target = {
+            x: (Math.random() * 2 - 0.5) * width,
+            y: (Math.random() * 2 - 0.5) * height
+          }
+          eyePair.delay = now + 400 + Math.random() * 1600
+          eyePair.speed = 0.08 + Math.random() * 0.12
+        }
+
+        const target = isFollowing && pointer ? pointer : eyePair.target
+        const speed = isFollowing ? 0.25 : eyePair.speed
+
+        eyePair.current.x += (target.x - eyePair.current.x) * speed
+        eyePair.current.y += (target.y - eyePair.current.y) * speed
+
+        lookAt(eyePair, eyePair.current.x, eyePair.current.y)
+      }
+
+      renderScene()
+      wanderFrame = requestAnimationFrame(handleWander)
+    }
+
+    const handlePointer = (x: number, y: number) => {
+      if (isWandering) {
+        pointer = { x, y, time: performance.now() }
+      } else {
+        handleAnimation(x, y)
+      }
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
-      handleAnimation(e.screenX - 80, e.screenY - 80)
+      handlePointer(e.screenX - 80, e.screenY - 80)
     }
 
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length === 1) {
-        handleAnimation(e.touches[0].pageX - 60, e.touches[0].pageY)
+        handlePointer(e.touches[0].pageX - 60, e.touches[0].pageY)
       }
     }
 
     renderScene()
+
+    if (isWandering) {
+      wanderFrame = requestAnimationFrame(handleWander)
+    }
 
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('touchmove', handleTouchMove)
     eyeWrapperCurrent.appendChild(renderer.domElement)
 
     return () => {
+      cancelAnimationFrame(wanderFrame)
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('touchmove', handleTouchMove)
       eyeWrapperCurrent.removeChild(renderer.domElement)
@@ -149,7 +220,7 @@ export const Eyes = () => {
 
       renderer.dispose()
     }
-  }, [windowWidth])
+  }, [windowWidth, wander])
 
   return <EyeWrapper ref={eyeWrapper} />
 }
