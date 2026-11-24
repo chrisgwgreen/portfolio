@@ -1,0 +1,21 @@
+.menuButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: 0.25rem solid var(--color-ink);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-raised);
+  z-index: 2;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}

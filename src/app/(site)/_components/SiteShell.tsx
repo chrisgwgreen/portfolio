@@ -1,7 +1,6 @@
 'use client'
 
 import MenuIcon from '@mui/icons-material/Menu'
-import { styled } from '@mui/system'
 import { Drawer } from 'components/Drawer/Drawer'
 import { Logo } from 'components/Logo/Logo'
 import { Eyes } from 'features/eyes/Eyes'
@@ -11,28 +10,7 @@ import { SelectedProject } from 'features/projects/SelectedProject'
 import { usePathname, useRouter } from 'next/navigation'
 import { useContext, useState } from 'react'
 import { Project } from 'types'
-
-const MenuWrapper = styled('button')`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  border: 0.25rem solid #333333;
-  color: #333333;
-  background: #fff;
-  padding: 1rem;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
-  z-index: 2;
-`
-
-const SwipeListWrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100%;
-`
+import styles from './SiteShell.module.css'
 
 export const SiteShell = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -66,11 +44,14 @@ export const SiteShell = () => {
     <>
       <Eyes />
       <Logo />
-      <MenuWrapper onClick={() => setIsMenuOpen(!isMenuOpen)}>
+      <button
+        className={styles.menuButton}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
         <MenuIcon fontSize='medium' />
-      </MenuWrapper>
+      </button>
       <Drawer show={isMenuOpen} onClose={handleCloseMenu}>
-        <SwipeListWrapper>
+        <div className={styles.menu}>
           {menu && (
             <ProjectList
               title='Web'
@@ -85,7 +66,7 @@ export const SiteShell = () => {
               handleSelectedProject={handleSelectedProject}
             />
           )}
-        </SwipeListWrapper>
+        </div>
       </Drawer>
       <Drawer show={selectedProject !== null} onClose={handleCloseContent}>
         {selectedProject && (
