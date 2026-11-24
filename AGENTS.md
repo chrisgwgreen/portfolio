@@ -7,3 +7,15 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Browser support
+
+Target browsers released in roughly the last two years (Safari 16.5+, Chrome/Edge/Firefox from 2023). Native CSS nesting, `@layer` and `@property` can be used freely. Newer features need a graceful fallback.
+
+## Styling
+
+Styles are CSS Modules (`Component.module.css` next to `Component.tsx`). Design tokens are CSS custom properties on `:root` in `src/app/globals.css`.
+
+## Visual checks
+
+`npm run test:visual` builds the site and compares screenshots against local references in `tests/visual/__screenshots__/` (git-ignored). Capture new references with `npx playwright test --update-snapshots` before a refactor, then run the check after it.

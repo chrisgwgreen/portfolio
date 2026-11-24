@@ -27,3 +27,8 @@ yarn-error.log*
 
 # firebase
 .firebase/
+
+# playwright
+/test-results/
+/playwright-report/
+/tests/visual/__screenshots__/

@@ -30,9 +30,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "npx serve@14 out",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:visual": "next build && playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "^10.15.0",
