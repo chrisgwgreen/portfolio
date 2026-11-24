@@ -32,7 +32,7 @@
   margin: 1rem 0;
   font-family: var(--font-copy);
   font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.43;
-  letter-spacing: 0.01071em;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
 }

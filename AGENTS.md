@@ -16,6 +16,8 @@ Target browsers released in roughly the last two years (Safari 16.5+, Chrome/Edg
 
 Styles are CSS Modules (`Component.module.css` next to `Component.tsx`). Design tokens are CSS custom properties on `:root` in `src/app/globals.css`.
 
+Font sizes are in `rem` and never below `1rem` (16px). Don't set a font size on `html`, so the visitor's browser setting still scales the text.
+
 ## Visual checks
 
 `npm run test:visual` builds the site and compares screenshots against local references in `tests/visual/__screenshots__/` (git-ignored). Capture new references with `npx playwright test --update-snapshots` before a refactor, then run the check after it.
