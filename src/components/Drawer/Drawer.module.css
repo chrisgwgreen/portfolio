@@ -1,0 +1,25 @@
+.drawer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-surface);
+  z-index: 2;
+  opacity: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+  background: var(--color-surface);
+  margin: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+}
