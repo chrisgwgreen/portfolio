@@ -1,0 +1,18 @@
+.tile {
+  box-shadow: var(--shadow-raised);
+  overflow: hidden;
+  cursor: pointer;
+  min-width: 300px;
+  margin: 0 1rem;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  background: var(--color-ink);
+  color: var(--color-surface);
+  padding: 0.4rem;
+  display: block;
+}

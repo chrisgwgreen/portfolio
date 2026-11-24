@@ -1,10 +1,10 @@
 'use client'
 
-import { styled } from '@mui/system'
 import { animated, useSpring } from '@react-spring/web'
 import { LazyImage } from 'components/LazyImage/LazyImage'
 import { ReactNode } from 'react'
 import { Image } from 'types'
+import styles from './ProjectTile.module.css'
 
 interface Props {
   onClick?: () => void
@@ -15,25 +15,6 @@ interface Props {
   onCloseCallback?: () => void
 }
 
-const Wrapper = styled(animated.div)`
-  box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  cursor: pointer;
-  min-width: 300px;
-  margin: 0 1rem;
-`
-
-const TitleWrapper = styled('span')`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-  background: #333333;
-  color: #fff;
-  padding: 0.4rem;
-  display: block;
-`
-
 export const ProjectTile = (props: Props) => {
   const {
     title,
@@ -41,7 +22,7 @@ export const ProjectTile = (props: Props) => {
     img: { src, alt }
   } = props
 
-  const [styles, set] = useSpring(() => ({
+  const [spring, set] = useSpring(() => ({
     transform: `scale(1)`,
     from: {
       transform: `scale(1)`
@@ -54,14 +35,15 @@ export const ProjectTile = (props: Props) => {
   })
 
   return (
-    <Wrapper
-      style={styles}
+    <animated.div
+      className={styles.tile}
+      style={spring}
       onMouseEnter={() => set(updateHover(true))}
       onMouseLeave={() => set(updateHover(false))}
       onClick={onClick && onClick}
     >
       {src && <LazyImage alt={alt} src={src} />}
-      <TitleWrapper>{title}</TitleWrapper>
-    </Wrapper>
+      <span className={styles.title}>{title}</span>
+    </animated.div>
   )
 }
