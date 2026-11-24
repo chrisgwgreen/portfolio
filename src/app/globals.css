@@ -1,18 +1,52 @@
-* {
-  box-sizing: border-box;
+/* Component CSS Modules stay unlayered, so they always win over these layers */
+@layer reset, base;
+
+:root {
+  --color-ink: #333333;
+  --color-primary: #212427;
+  --color-surface: #fff;
+  --shadow-raised: 0.2rem 1rem 1rem rgb(0 0 0 / 0.1);
+  --font-body: 'Bebas Neue', 'Fira Sans', sans-serif;
 }
 
-body {
-  margin: 0;
-  font-family: 'Bebas Neue', 'Fira Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer reset {
+  /* Scoped to the elements the site renders, rather than a global `*` reset */
+  :where(
+      html,
+      body,
+      div,
+      span,
+      p,
+      h1,
+      h2,
+      h3,
+      a,
+      button,
+      img,
+      svg,
+      canvas,
+      nav,
+      ul,
+      li,
+      progress
+    ) {
+    box-sizing: border-box;
+  }
 }
 
-html,
-body,
-#root {
-  height: 100%;
-  max-height: 100%;
-  overflow: hidden;
+@layer base {
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+  }
 }
