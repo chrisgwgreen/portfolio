@@ -1,12 +1,19 @@
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter'
 import type { Metadata, Viewport } from 'next'
 import { ReactNode } from 'react'
+import { SITE_NAME } from 'utils'
 import { Providers } from './providers'
 
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'GWGreen Ltd.',
+  // Makes relative og:url values absolute in link previews
+  metadataBase: new URL(
+    process.env.SITE_URL || 'https://gwgreenltd-f6324.web.app'
+  ),
+  title: { default: SITE_NAME, template: `%s | ${SITE_NAME}` },
+  description: `Web and hardware projects by ${SITE_NAME}`,
+  openGraph: { siteName: SITE_NAME, type: 'website', url: '/' },
   icons: {
     icon: [
       { url: '/favicon.ico' },

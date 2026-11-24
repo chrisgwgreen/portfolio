@@ -4,7 +4,9 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { styled } from '@mui/system'
 import { Drawer, Eyes, Logo, ProjectList, SelectedProject } from 'components'
 import { DataContext } from 'contexts'
+import { usePathname, useRouter } from 'next/navigation'
 import { useContext, useState } from 'react'
+import { Project } from 'types'
 
 const MenuWrapper = styled('button')`
   position: absolute;
@@ -30,13 +32,21 @@ const SwipeListWrapper = styled('div')`
 
 export const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [selectedProject, setSelectedProject] = useState<any | null>(null)
 
   const { projects } = useContext(DataContext)
+  const router = useRouter()
+  const pathname = usePathname()
+
+  // The URL is the source of truth for the open project, so links can be shared
+  const slug = pathname.match(/^\/projects\/([^/]+)/)?.[1]
+  const selectedProject =
+    (slug && Object.values(projects).find(project => project.slug === slug)) ||
+    null
 
   const handleCloseMenu = () => setIsMenuOpen(false)
-  const handleCloseContent = () => setSelectedProject(null)
-  const handleSelectedProject = (item: any) => setSelectedProject(item)
+  const handleCloseContent = () => router.push('/', { scroll: false })
+  const handleSelectedProject = (item: Project) =>
+    router.push(`/projects/${item.slug}`, { scroll: false })
 
   const menu = projects
     ? Object.keys(projects).reduce((acc: any, key: any) => {

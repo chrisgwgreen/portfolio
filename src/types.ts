@@ -74,6 +74,7 @@ export type ProjectType = 'web' | 'hardware'
 export interface Project {
   type: ProjectType
   title: string
+  slug: string
   copy: string
   media: Media[]
   link?: string
