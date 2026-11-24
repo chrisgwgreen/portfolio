@@ -1,10 +1,10 @@
 'use client'
 
-import { styled } from '@mui/system'
 import { useWindowSize } from 'hooks'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { EYE_SIZE } from 'utils'
+import styles from './Eyes.module.css'
 import { getTexture } from './texture'
 
 
@@ -30,11 +30,6 @@ interface Props {
 
 // How long the eyes keep following the pointer after it stops, when wandering
 const POINTER_HOLD_MS = 1500
-
-const EyeWrapper = styled('div')`
-  height: 100%;
-  width: 100%;
-`
 
 export const Eyes = ({ wander = false }: Props) => {
   const eyeWrapper = useRef<HTMLDivElement>(null!)
@@ -224,5 +219,5 @@ export const Eyes = ({ wander = false }: Props) => {
     }
   }, [windowWidth, wander])
 
-  return <EyeWrapper ref={eyeWrapper} />
+  return <div className={styles.eyes} ref={eyeWrapper} />
 }
