@@ -1,69 +1,17 @@
 'use client'
 
-import { css, styled } from '@mui/system'
 import { animated, useTrail } from '@react-spring/web'
+import { cx } from 'lib/cx'
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
 import { v4 as uuidv4 } from 'uuid'
+import styles from './AnimatedTitle.module.css'
 
 interface Props {
   isRightAligned?: boolean
   isSmall?: boolean
   title: string
 }
-
-export const Wrapper = styled('div')<{ isRightAligned: boolean }>(
-  ({ isRightAligned }) => css`
-    position: relative;
-    display: flex;
-
-    ${isRightAligned &&
-    css`
-      justify-content: right;
-      text-align: right;
-    `}
-  `
-)
-
-const AnimatedText = styled(animated.div, {
-  shouldForwardProp: prop => prop !== 'isSmall'
-})<{ isSmall?: boolean }>(
-  ({
-    isSmall = false,
-    theme: {
-      palette: { primary }
-    }
-  }) => css`
-    position: relative;
-    width: 100%;
-    line-height: ${isSmall ? '2rem' : '3rem'};
-    color: #333333;
-    font-size: ${isSmall ? '2rem' : '3rem'};
-    font-weight: 800;
-    letter-spacing: 0;
-    will-change: transform, opacity;
-    color: ${primary.main};
-  `
-)
-
-export const Underline = styled('div')<{
-  isRightAligned: boolean
-  isSmall?: boolean
-}>(
-  ({
-    isRightAligned,
-    isSmall,
-    theme: {
-      palette: { primary }
-    }
-  }) => css`
-    width: 6rem;
-    height: 0.25rem;
-    margin: ${isSmall ? '0 0 1rem 0' : '1rem 0'};
-    align-self: ${isRightAligned ? 'end' : 'start'};
-    background: ${primary.main};
-  `
-)
 
 const AnimatedTitleWrapper: React.FC<{
   open: boolean
@@ -86,11 +34,21 @@ const AnimatedTitleWrapper: React.FC<{
   return (
     <div>
       {trail.map(({ height, ...style }, index) => (
-        <AnimatedText key={index} style={style} isSmall={isSmall}>
+        <animated.div
+          key={index}
+          className={cx(styles.line, isSmall && styles.small)}
+          style={style}
+        >
           <animated.div style={{ height }}>{items[index]}</animated.div>
-        </AnimatedText>
+        </animated.div>
       ))}
-      <Underline isRightAligned={isRightAligned} isSmall={isSmall} />
+      <div
+        className={cx(
+          styles.underline,
+          isSmall && styles.small,
+          isRightAligned && styles.rightAligned
+        )}
+      />
     </div>
   )
 }
@@ -103,7 +61,10 @@ export const AnimatedTitle = (props: Props) => {
   })
 
   return (
-    <Wrapper ref={ref} isRightAligned={isRightAligned}>
+    <div
+      ref={ref}
+      className={cx(styles.title, isRightAligned && styles.rightAligned)}
+    >
       <AnimatedTitleWrapper
         open={inView}
         isRightAligned={isRightAligned}
@@ -113,6 +74,6 @@ export const AnimatedTitle = (props: Props) => {
           <span key={`animated-title-${uuidv4()}`}>{line}</span>
         ))}
       </AnimatedTitleWrapper>
-    </Wrapper>
+    </div>
   )
 }
