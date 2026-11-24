@@ -5,7 +5,6 @@ import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { EYE_SIZE } from 'utils'
 
-import 'assets/index.css'
 
 interface Eye {
   eyes: THREE.Mesh[]
@@ -19,7 +18,7 @@ const EyeWrapper = styled('div')`
 `
 
 export const Eyes = () => {
-  const eyeWrapper = useRef<HTMLDivElement>(document.createElement('div'))
+  const eyeWrapper = useRef<HTMLDivElement>(null!)
   const { windowWidth } = useWindowSize()
 
   useEffect(() => {

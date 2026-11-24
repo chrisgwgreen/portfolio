@@ -67,7 +67,7 @@ const AnimatedTitleWrapper: React.FC<{
   open: boolean
   isRightAligned: boolean
   isSmall?: boolean
-  children: JSX.Element[]
+  children: React.JSX.Element[]
 }> = props => {
   const { open, children, isRightAligned, isSmall = false } = props
 

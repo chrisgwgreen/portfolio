@@ -1,8 +1,8 @@
 import { styled } from '@mui/system'
-import { ReactComponent as GWGLogo } from 'assets/gwg.svg'
+import gwgLogo from 'assets/gwg.svg'
 import { media } from 'utils'
 
-const LogoWrapper = styled(GWGLogo)`
+const LogoWrapper = styled('img')`
   position: absolute;
   left: 50%;
   top: 50%;
@@ -29,4 +29,4 @@ const LogoWrapper = styled(GWGLogo)`
   }
 `
 
-export const Logo = () => <LogoWrapper />
+export const Logo = () => <LogoWrapper src={gwgLogo.src} alt='GWGreen Ltd.' />

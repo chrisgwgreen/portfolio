@@ -1,3 +1,5 @@
+'use client'
+
 import MenuIcon from '@mui/icons-material/Menu'
 import { styled } from '@mui/system'
 import { Drawer, Eyes, Logo, ProjectList, SelectedProject } from 'components'

@@ -3,7 +3,7 @@ import { styled } from '@mui/system'
 import { AnimatedTitle } from 'components'
 import { useEffect, useState } from 'react'
 import Gallery, { PhotoProps } from 'react-photo-gallery'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
 import { Media, Project } from 'types'
 
 interface Props {
@@ -89,7 +89,15 @@ export const SelectedProject = (props: Props) => {
         </LoadingWrapper>
       )}
       <PhotoGalleryWrapper style={styles}>
-        {photos && <Gallery photos={photos} margin={10} />}
+        {/* React 19 ignores the library's defaultProps, so pass its defaults explicitly */}
+        {photos && (
+          <Gallery
+            photos={photos}
+            margin={10}
+            direction='row'
+            targetRowHeight={300}
+          />
+        )}
       </PhotoGalleryWrapper>
       {link && (
         <StyledLink href={link} target='_blank' rel='noreferrer'>

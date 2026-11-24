@@ -1,12 +1,13 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { styled } from '@mui/system'
 import { useWindowSize } from 'hooks'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
+import { ReactNode } from 'react'
 
 interface Props {
   show: boolean
   onClose: () => void
-  children: JSX.Element
+  children: ReactNode
 }
 
 const Wrapper = styled(animated.div)`
