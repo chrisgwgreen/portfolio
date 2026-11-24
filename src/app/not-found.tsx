@@ -1,4 +1,4 @@
-import { NotFound } from 'components/NotFound/NotFound'
+import { NotFound } from 'features/not-found/NotFound'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {

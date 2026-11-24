@@ -1,6 +1,8 @@
+'use client'
+
 import { CircularProgress, Typography } from '@mui/material'
 import { styled } from '@mui/system'
-import { AnimatedTitle } from 'components'
+import { AnimatedTitle } from 'components/AnimatedTitle/AnimatedTitle'
 import { useEffect, useState } from 'react'
 import Gallery, { PhotoProps } from 'react-photo-gallery'
 import { animated, useSpring } from '@react-spring/web'

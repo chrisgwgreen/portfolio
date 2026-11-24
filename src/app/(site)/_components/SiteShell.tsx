@@ -2,8 +2,12 @@
 
 import MenuIcon from '@mui/icons-material/Menu'
 import { styled } from '@mui/system'
-import { Drawer, Eyes, Logo, ProjectList, SelectedProject } from 'components'
-import { DataContext } from 'contexts'
+import { Drawer } from 'components/Drawer/Drawer'
+import { Logo } from 'components/Logo/Logo'
+import { Eyes } from 'features/eyes/Eyes'
+import { DataContext } from 'features/projects/DataContext'
+import { ProjectList } from 'features/projects/ProjectList'
+import { SelectedProject } from 'features/projects/SelectedProject'
 import { usePathname, useRouter } from 'next/navigation'
 import { useContext, useState } from 'react'
 import { Project } from 'types'
@@ -30,7 +34,7 @@ const SwipeListWrapper = styled('div')`
   height: 100%;
 `
 
-export const App = () => {
+export const SiteShell = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const { projects } = useContext(DataContext)

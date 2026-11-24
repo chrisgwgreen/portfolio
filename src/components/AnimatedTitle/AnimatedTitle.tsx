@@ -1,3 +1,5 @@
+'use client'
+
 import { css, styled } from '@mui/system'
 import { animated, useTrail } from '@react-spring/web'
 import React from 'react'

@@ -1,7 +1,7 @@
 'use client'
 
 import { styled } from '@mui/system'
-import { Eyes } from 'components/Eyes/Eyes'
+import { Eyes } from 'features/eyes/Eyes'
 import Link from 'next/link'
 import { media } from 'utils'
 

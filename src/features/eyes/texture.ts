@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { hexToRgb, lighterCol } from 'utils/color'
+import { hexToRgb, lighterCol } from 'lib/color'
 
 export const getTexture = (color: string) => {
   // Every pixel in a row is the same colour, so one column renders identically to 2048

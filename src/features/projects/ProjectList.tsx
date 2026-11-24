@@ -1,5 +1,7 @@
-import { AnimatedTitle, ProjectTile, SwipeList } from 'components'
+import { AnimatedTitle } from 'components/AnimatedTitle/AnimatedTitle'
+import { SwipeList } from 'components/SwipeList/SwipeList'
 import { Project } from 'types'
+import { ProjectTile } from './ProjectTile'
 
 interface Props {
   title: string

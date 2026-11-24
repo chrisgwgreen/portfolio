@@ -1,3 +1,5 @@
+'use client'
+
 import { styled } from '@mui/system'
 import gwgLogo from 'assets/gwg.svg'
 import { media } from 'utils'

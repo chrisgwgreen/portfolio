@@ -1,6 +1,8 @@
-import { css, styled } from '@mui/system'
+'use client'
+
+import { styled } from '@mui/system'
 import { animated, useSpring } from '@react-spring/web'
-import { LazyImage } from 'components'
+import { LazyImage } from 'components/LazyImage/LazyImage'
 import { ReactNode } from 'react'
 import { Image } from 'types'
 
@@ -13,19 +15,13 @@ interface Props {
   onCloseCallback?: () => void
 }
 
-const Wrapper = styled(animated.div)(
-  ({
-    theme: {
-      palette: { tertiary }
-    }
-  }) => css`
-    box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    cursor: pointer;
-    min-width: 300px;
-    margin: 0 1rem;
-  `
-)
+const Wrapper = styled(animated.div)`
+  box-shadow: 0.2rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  min-width: 300px;
+  margin: 0 1rem;
+`
 
 const TitleWrapper = styled('span')`
   white-space: nowrap;

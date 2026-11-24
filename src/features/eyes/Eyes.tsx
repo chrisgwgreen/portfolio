@@ -1,9 +1,11 @@
+'use client'
+
 import { styled } from '@mui/system'
-import { getTexture } from 'assets/texture'
 import { useWindowSize } from 'hooks'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { EYE_SIZE } from 'utils'
+import { getTexture } from './texture'
 
 
 interface Point {

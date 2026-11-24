@@ -1,3 +1,5 @@
+'use client'
+
 import { Skeleton } from '@mui/material'
 import { css, styled } from '@mui/system'
 import { useState } from 'react'

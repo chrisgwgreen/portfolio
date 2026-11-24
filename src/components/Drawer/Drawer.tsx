@@ -1,3 +1,5 @@
+'use client'
+
 import CloseIcon from '@mui/icons-material/Close'
 import { styled } from '@mui/system'
 import { useWindowSize } from 'hooks'
