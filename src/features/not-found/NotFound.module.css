@@ -1,0 +1,48 @@
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  padding: 2rem 3rem;
+  border: 0.25rem solid var(--color-ink);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  text-align: center;
+  box-shadow: var(--shadow-raised);
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+  }
+}
+
+.code {
+  margin: 0;
+  font-size: 8rem;
+  font-weight: normal;
+  line-height: 1;
+
+  @media (max-width: 600px) {
+    font-size: 5rem;
+  }
+}
+
+.message {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1.5rem;
+
+  @media (max-width: 600px) {
+    font-size: 1.25rem;
+  }
+}
+
+.homeLink {
+  display: inline-block;
+  background: var(--color-ink);
+  color: var(--color-surface);
+  padding: 1rem;
+  font-size: 1.25rem;
+  text-decoration: none;
+}
