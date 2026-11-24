@@ -143,8 +143,11 @@ export const Eyes = () => {
       }
 
       for (let i = 0; i < materials.length; i++) {
+        materials[i].map?.dispose()
         materials[i].dispose()
       }
+
+      renderer.dispose()
     }
   }, [windowWidth])
 

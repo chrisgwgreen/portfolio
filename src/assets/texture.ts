@@ -2,11 +2,12 @@ import * as THREE from 'three'
 import { hexToRgb, lighterCol } from 'utils/color'
 
 export const getTexture = (color: string) => {
-  const width = 2048
+  // Every pixel in a row is the same colour, so one column renders identically to 2048
+  const width = 1
   const height = 2048
 
   const size = width * height
-  const data = new Uint8Array(3 * size)
+  const data = new Uint8Array(4 * size)
 
   const pupilHeight = 150
   const pupilStart = 0
@@ -20,16 +21,17 @@ export const getTexture = (color: string) => {
 
   // Sclera
   for (let i = 0; i < size; i++) {
-    const stride = i * 3
+    const stride = i * 4
 
     data[stride] = 255
     data[stride + 1] = 255
     data[stride + 2] = 255
+    data[stride + 3] = 255
   }
 
   // Pupil
   for (let i = pupilStart; i < pupilEnd; i++) {
-    const stride = i * 3
+    const stride = i * 4
 
     data[stride] = 0
     data[stride + 1] = 0
@@ -37,7 +39,7 @@ export const getTexture = (color: string) => {
   }
 
   for (let i = pupilEnd; i < irisEnd; i++) {
-    const stride = i * 3
+    const stride = i * 4
 
     const { r, g, b } = hexToRgb(
       lighterCol(color, 100 - Math.floor(((50 / irisHeight) * i) / width))
@@ -50,13 +52,20 @@ export const getTexture = (color: string) => {
 
   // Iris Edge
   for (let i = irisEnd; i < irisEdgeEnd; i++) {
-    const stride = i * 3
+    const stride = i * 4
 
     data[stride] = 0
     data[stride + 1] = 0
     data[stride + 2] = 0
   }
 
-  // @ts-ignore
-  return new THREE.DataTexture(data, width, height, THREE.RGBFormat)
+  // RGBA rather than RGB: three.js only applies sRGB decoding to RGBA textures
+  const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat)
+
+  // The pixel values above are sRGB, so tag them as such to stop three.js lightening them
+  texture.colorSpace = THREE.SRGBColorSpace
+  // DataTexture no longer flags itself for upload, so the eyes render blank without this
+  texture.needsUpdate = true
+
+  return texture
 }
