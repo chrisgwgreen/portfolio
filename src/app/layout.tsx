@@ -35,7 +35,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
       {/* eslint-disable-next-line @next/next/no-page-custom-font */}
       <link
         rel='stylesheet'
-        href='https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap'
+        href='https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400&display=swap'
       />
     </head>
     <body>
