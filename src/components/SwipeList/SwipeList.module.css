@@ -1,0 +1,17 @@
+.swipeList {
+  position: relative;
+  margin: 0 -3rem;
+}
+
+.track {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  padding: 2rem calc(5rem - 10px);
+  scrollbar-width: none;
+
+  /* Safari before 18.2 ignores scrollbar-width */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
