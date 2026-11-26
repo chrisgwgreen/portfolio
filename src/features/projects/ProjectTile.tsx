@@ -22,7 +22,7 @@ export const ProjectTile = (props: Props) => {
     img: { src, alt }
   } = props
 
-  const [spring, set] = useSpring(() => ({
+  const [spring, api] = useSpring(() => ({
     transform: `scale(1)`,
     from: {
       transform: `scale(1)`
@@ -38,8 +38,8 @@ export const ProjectTile = (props: Props) => {
     <animated.div
       className={styles.tile}
       style={spring}
-      onMouseEnter={() => set(updateHover(true))}
-      onMouseLeave={() => set(updateHover(false))}
+      onMouseEnter={() => api.start(updateHover(true))}
+      onMouseLeave={() => api.start(updateHover(false))}
       onClick={onClick && onClick}
     >
       {src && <LazyImage alt={alt} src={src} />}

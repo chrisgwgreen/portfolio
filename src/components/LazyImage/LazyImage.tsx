@@ -20,9 +20,8 @@ export const LazyImage = (props: HTMLImage) => {
           className={styles.image}
           src={src}
           alt={alt}
-          // Placeholder 16:9 size; the CSS lets the image keep its own aspect ratio
-          width={300}
-          height={169}
+          fill
+          sizes='300px'
           // A failed image also reports as loaded, so only reveal one with pixels
           onLoad={e => e.currentTarget.naturalWidth > 0 && setIsVisible(true)}
         />
