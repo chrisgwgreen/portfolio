@@ -1,6 +1,7 @@
 import { getProject, getProjects } from 'lib/projects'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { preload } from 'react-dom'
 import { Project } from 'types'
 import { SITE_NAME } from 'utils'
 
@@ -56,7 +57,14 @@ export const generateMetadata = async ({
 
 // The open project is rendered by the shared (site) layout from the URL
 const ProjectPage = async ({ params }: Props) => {
-  if (!(await getProject((await params).slug))) notFound()
+  const project = await getProject((await params).slug)
+
+  if (!project) notFound()
+
+  // The hero only renders once the page's JavaScript runs, so start fetching
+  // it from the HTML instead of waiting
+  const [hero] = project.media
+  if (hero) preload(hero.src, { as: 'image', fetchPriority: 'high' })
 
   return null
 }
