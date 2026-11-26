@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npx serve@14 out",
+    "start": "serve out",
     "lint": "eslint .",
     "test:visual": "next build && playwright test"
   },
@@ -28,6 +28,8 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "^10.15.0",
-    "eslint-config-next": "^16.4.6"
-  }
+    "eslint-config-next": "^16.4.6",
+    "serve": "^14.2.8"
+  },
+  "packageManager": "pnpm@10.28.2"
 }

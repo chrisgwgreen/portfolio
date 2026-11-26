@@ -1,0 +1,15 @@
+peerDependencyRules:
+  allowedVersions:
+    # Unmaintained; works with React 19 once its defaultProps are passed explicitly
+    react-photo-gallery>react: '19'
+    react-photo-gallery>react-dom: '19'
+    # Pulled in by eslint-config-next; their peer ranges stop at ESLint 9 but lint fine on 10
+    eslint-plugin-react>eslint: '10'
+    eslint-plugin-import>eslint: '10'
+    eslint-plugin-jsx-a11y>eslint: '10'
+
+# Install scripts that are safe to skip: @firebase/util only writes Firebase App
+# Hosting config, and protobufjs only prints a version notice
+ignoredBuiltDependencies:
+  - '@firebase/util'
+  - protobufjs

@@ -20,4 +20,4 @@ Font sizes are in `rem` and never below `1rem` (16px). Don't set a font size on 
 
 ## Visual checks
 
-`npm run test:visual` builds the site and compares screenshots against local references in `tests/visual/__screenshots__/` (git-ignored). Capture new references with `npx playwright test --update-snapshots` before a refactor, then run the check after it.
+`pnpm test:visual` builds the site and compares screenshots against local references in `tests/visual/__screenshots__/` (git-ignored). Capture new references with `pnpm exec playwright test --update-snapshots` before a refactor, then run the check after it.

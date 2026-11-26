@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test'
 
-// Visual regression checks against the static export in out/ (run `npm run test:visual`)
+// Visual regression checks against the static export in out/ (run `pnpm test:visual`)
 export default defineConfig({
   testDir: 'tests/visual',
   snapshotPathTemplate: '{testDir}/__screenshots__/{projectName}/{arg}{ext}',
@@ -28,7 +28,7 @@ export default defineConfig({
   ],
   // serve applies clean URLs and 404.html the same way Firebase Hosting does
   webServer: {
-    command: 'npx serve@14 out --listen 4173 --no-clipboard',
+    command: 'pnpm exec serve out --listen 4173 --no-clipboard',
     url: 'http://localhost:4173',
     reuseExistingServer: true
   }
