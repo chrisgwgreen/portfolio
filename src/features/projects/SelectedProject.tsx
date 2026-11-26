@@ -3,6 +3,7 @@
 import { AnimatedTitle } from 'components/AnimatedTitle/AnimatedTitle'
 import { Lightbox } from 'components/Lightbox/Lightbox'
 import { Spinner } from 'components/Spinner/Spinner'
+import { Wave } from 'components/Wave/Wave'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Gallery, { PhotoProps, RenderImageProps } from 'react-photo-gallery'
@@ -91,6 +92,7 @@ export const SelectedProject = (props: Props) => {
               onError={() => setFailedHeroSrc(hero.src)}
             />
           )}
+          <Wave />
         </div>
       )}
       <div className={styles.project}>

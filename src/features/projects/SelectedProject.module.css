@@ -54,7 +54,7 @@
   }
 }
 
-/* Full-width banner; the photo is cropped to fill it */
+/* Full-width banner; the photo is cropped to fill it, with a wave along its foot */
 .hero {
   position: relative;
   height: clamp(15rem, 50dvh, 32rem);
