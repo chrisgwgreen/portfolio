@@ -1,0 +1,112 @@
+.lightbox {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+  box-shadow: var(--shadow-raised);
+
+  /* Closed state, and where the exit fades to */
+  opacity: 0;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  /* Separate from the list above so browsers without it keep the fade */
+  transition-behavior: allow-discrete;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform: scale(0.9);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0.1s;
+  }
+
+  &[open] {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      transform: scale(1);
+
+      @starting-style {
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  /* Scrolling over the image or backdrop shouldn't scroll the project behind */
+  &:modal {
+    overscroll-behavior: contain;
+  }
+
+  &::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+    background-color: rgb(0 0 0 / 0);
+    transition-property: background-color, display, overlay;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+    transition-behavior: allow-discrete;
+  }
+
+  &[open]::backdrop {
+    background-color: rgb(0 0 0 / 0.8);
+
+    @starting-style {
+      background-color: rgb(0 0 0 / 0);
+    }
+  }
+}
+
+/* As large as fits the viewport, at the photo's own aspect ratio */
+.image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100dvh - 2rem);
+}
+
+.button {
+  position: absolute;
+  display: flex;
+  padding: 0.5rem;
+  border: none;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.2rem solid var(--color-surface);
+    outline-offset: 0.2rem;
+  }
+
+  @media (forced-colors: active) {
+    border: 1px solid ButtonText;
+  }
+}
+
+.close {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.previous,
+.next {
+  top: 50%;
+  translate: 0 -50%;
+}
+
+.previous {
+  left: 0.5rem;
+}
+
+.next {
+  right: 0.5rem;
+}

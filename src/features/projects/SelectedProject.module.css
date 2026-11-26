@@ -36,3 +36,20 @@
   line-height: 1.5;
   letter-spacing: 0.00938em;
 }
+
+.photo {
+  display: block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+
+  img {
+    display: block;
+  }
+
+  &:focus-visible {
+    outline: 0.2rem solid var(--color-ink);
+    outline-offset: 0.2rem;
+  }
+}

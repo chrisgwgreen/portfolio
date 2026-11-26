@@ -38,6 +38,14 @@ test('project page', async ({ page }) => {
   await expect(page).toHaveScreenshot('project.png')
 })
 
+test('lightbox', async ({ page }) => {
+  await page.goto('/projects/alexa-lamp')
+  await settle(page)
+  await page.getByRole('button', { name: 'Enlarge image 2' }).click()
+  await settle(page)
+  await expect(page).toHaveScreenshot('lightbox.png')
+})
+
 test('not found', async ({ page }) => {
   // Wandering eyes never hold still, so capture the reduced-motion version
   await page.emulateMedia({ reducedMotion: 'reduce' })
