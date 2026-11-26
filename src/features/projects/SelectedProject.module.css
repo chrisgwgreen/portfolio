@@ -53,3 +53,15 @@
     outline-offset: 0.2rem;
   }
 }
+
+/* Full-width banner; the photo is cropped to fill it */
+.hero {
+  position: relative;
+  height: clamp(15rem, 50dvh, 32rem);
+  margin-bottom: 1rem;
+  background-color: rgb(0 0 0 / 0.11);
+}
+
+.heroImage {
+  object-fit: cover;
+}

@@ -3,6 +3,7 @@
 import { AnimatedTitle } from 'components/AnimatedTitle/AnimatedTitle'
 import { Lightbox } from 'components/Lightbox/Lightbox'
 import { Spinner } from 'components/Spinner/Spinner'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Gallery, { PhotoProps, RenderImageProps } from 'react-photo-gallery'
 import { animated, useSpring } from '@react-spring/web'
@@ -42,6 +43,8 @@ export const SelectedProject = (props: Props) => {
   const [photos, setPhotos] = useState<PhotoProps[] | null>(null)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
+  // Hides a hero that fails to load, leaving its placeholder rather than a broken image
+  const [failedHeroSrc, setFailedHeroSrc] = useState<string>()
 
   const spring = useSpring({
     opacity: photos && photos.length > 0 ? 1 : 0
@@ -50,7 +53,7 @@ export const SelectedProject = (props: Props) => {
   useEffect(() => {
     const loadImage = async (image: Media) => {
       return new Promise((resolve, reject) => {
-        var img = new Image()
+        var img = new window.Image()
 
         img.onload = function () {
           resolve({
@@ -69,53 +72,74 @@ export const SelectedProject = (props: Props) => {
     })
   }, [media])
 
+  const [hero] = media
+
   return (
-    <div className={styles.project}>
-      <div className={styles.content}>
-        <AnimatedTitle title={title} />
-        <p className={styles.copy}>{copy}</p>
-      </div>
-      {!photos && (
-        <div className={styles.loading}>
-          <Spinner />
+    <>
+      {hero && (
+        <div className={styles.hero}>
+          {/* The first thing a project page shows, so it loads first */}
+          {hero.src !== failedHeroSrc && (
+            <Image
+              className={styles.heroImage}
+              src={hero.src}
+              alt=''
+              fill
+              sizes='100vw'
+              loading='eager'
+              fetchPriority='high'
+              onError={() => setFailedHeroSrc(hero.src)}
+            />
+          )}
         </div>
       )}
-      <animated.div className={styles.gallery} style={spring}>
-        {/* React 19 ignores the library's defaultProps, so pass its defaults explicitly */}
+      <div className={styles.project}>
+        <div className={styles.content}>
+          <AnimatedTitle title={title} />
+          <p className={styles.copy}>{copy}</p>
+        </div>
+        {!photos && (
+          <div className={styles.loading}>
+            <Spinner />
+          </div>
+        )}
+        <animated.div className={styles.gallery} style={spring}>
+          {/* React 19 ignores the library's defaultProps, so pass its defaults explicitly */}
+          {photos && (
+            <Gallery
+              photos={photos}
+              margin={10}
+              direction='row'
+              targetRowHeight={300}
+              renderImage={GalleryImage}
+              onClick={(_, { index }) => {
+                setLightboxIndex(index)
+                setIsLightboxOpen(true)
+              }}
+            />
+          )}
+        </animated.div>
         {photos && (
-          <Gallery
+          <Lightbox
             photos={photos}
-            margin={10}
-            direction='row'
-            targetRowHeight={300}
-            renderImage={GalleryImage}
-            onClick={(_, { index }) => {
-              setLightboxIndex(index)
-              setIsLightboxOpen(true)
-            }}
+            index={lightboxIndex}
+            isOpen={isLightboxOpen}
+            label={title}
+            onIndexChange={setLightboxIndex}
+            onClose={() => setIsLightboxOpen(false)}
           />
         )}
-      </animated.div>
-      {photos && (
-        <Lightbox
-          photos={photos}
-          index={lightboxIndex}
-          isOpen={isLightboxOpen}
-          label={title}
-          onIndexChange={setLightboxIndex}
-          onClose={() => setIsLightboxOpen(false)}
-        />
-      )}
-      {link && (
-        <a
-          className={styles.link}
-          href={link}
-          target='_blank'
-          rel='noreferrer'
-        >
-          LINK
-        </a>
-      )}
-    </div>
+        {link && (
+          <a
+            className={styles.link}
+            href={link}
+            target='_blank'
+            rel='noreferrer'
+          >
+            LINK
+          </a>
+        )}
+      </div>
+    </>
   )
 }
