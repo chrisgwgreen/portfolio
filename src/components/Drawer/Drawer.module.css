@@ -16,6 +16,8 @@
   top: 1rem;
   right: 1rem;
   border: none;
+  /* Even padding, as the browser's default is wider at the sides than top and bottom */
+  padding: 0.25rem;
   background: var(--color-surface);
   margin: 1rem;
   cursor: pointer;
