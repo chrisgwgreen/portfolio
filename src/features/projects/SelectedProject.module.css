@@ -57,21 +57,27 @@
 /* Full-width banner; the photo is cropped to fill it, with a wave along its foot */
 .hero {
   position: relative;
+  /* Contains the scaled-up photo, so none of it shows past the wave */
+  overflow: clip;
   height: clamp(15rem, 50dvh, 32rem);
   margin-bottom: 1rem;
   background-color: rgb(0 0 0 / 0.11);
 }
 
+/* Small images are stretched to fill, so soften their pixel edges. Scaled up a
+   touch so the blur doesn't fade the photo's own edges */
 .heroImage {
   object-fit: cover;
+  filter: blur(1px);
+  scale: 1.01;
 }
 
-/* A fine dot screen over the photo, breaking up the pixelation of small images stretched to fill */
+/* A dot screen over the softened photo, masking what's left of the pixelation */
 .heroDots {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(black 25%, transparent 25%);
+  background-image: radial-gradient(black 35%, transparent 37%);
   background-size: 0.25rem 0.25rem;
-  opacity: 0.2;
+  opacity: 0.4;
   pointer-events: none;
 }
