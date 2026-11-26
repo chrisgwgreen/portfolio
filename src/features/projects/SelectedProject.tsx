@@ -92,6 +92,7 @@ export const SelectedProject = (props: Props) => {
               onError={() => setFailedHeroSrc(hero.src)}
             />
           )}
+          <div className={styles.heroDots} />
           <Wave />
         </div>
       )}

@@ -65,3 +65,13 @@
 .heroImage {
   object-fit: cover;
 }
+
+/* A fine dot screen over the photo, breaking up the pixelation of small images stretched to fill */
+.heroDots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(black 25%, transparent 25%);
+  background-size: 0.25rem 0.25rem;
+  opacity: 0.2;
+  pointer-events: none;
+}
